@@ -22,9 +22,9 @@ file_patterns:
 llm:
   enabled: true
   provider: cortex
-  api_base_url: http://localhost:1337/v1
+  api_base_url: http://localhost:8000/v1
   api_key: null
-  model: llama3
+  model: cogito-v1:3b
   temperature: 0.3
   max_tokens: 500
   timeout: 30
