@@ -1,0 +1,9 @@
+pyside6>=6.5.2
+pydantic>=2.4.2
+gitpython>=3.1.40
+markdown>=3.5
+pygments>=2.16.1
+pyyaml>=6.0.1
+aiohttp>=3.8.6
+rich>=13.6.0
+typer>=0.9.0
