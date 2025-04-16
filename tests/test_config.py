@@ -10,7 +10,7 @@ from repoinsight.config.models import FilePatterns, RepoInsightConfig
 from repoinsight.config.yaml import ConfigManager, load_config, save_config
 
 
-def test_file_patterns_defaults():
+def test_file_patterns_defaults() -> None:
     """Test that FilePatterns has the expected defaults."""
     patterns = FilePatterns()
     assert "*.py" in patterns.include
@@ -20,7 +20,7 @@ def test_file_patterns_defaults():
     assert "*.git*" in patterns.exclude
 
 
-def test_config_required_fields():
+def test_config_required_fields() -> None:
     """Test that RepoInsightConfig requires name and root_path."""
     with pytest.raises(ValueError):
         RepoInsightConfig()  # Missing required fields
@@ -30,7 +30,7 @@ def test_config_required_fields():
     assert config.root_path == "/path/to/repo"
 
 
-def test_config_defaults():
+def test_config_defaults() -> None:
     """Test that RepoInsightConfig has the expected defaults."""
     config = RepoInsightConfig(name="Test", root_path="/path/to/repo")
 
@@ -46,7 +46,7 @@ def test_config_defaults():
     assert config.output.include_toc is True
 
 
-def test_save_and_load_config():
+def test_save_and_load_config() -> None:
     """Test saving and loading configuration."""
     config = RepoInsightConfig(
         name="Test Config",
@@ -70,7 +70,7 @@ def test_save_and_load_config():
         assert loaded_config.output_path == config.output_path
 
 
-def test_config_manager():
+def test_config_manager() -> None:
     """Test the ConfigManager class."""
     with tempfile.TemporaryDirectory() as temp_dir:
         # Create a ConfigManager with a custom config directory

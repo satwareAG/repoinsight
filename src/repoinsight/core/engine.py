@@ -9,7 +9,6 @@ import asyncio
 import logging
 import os
 from pathlib import Path
-from typing import Optional
 
 from repoinsight.config.models import RepoInsightConfig
 from repoinsight.core.models import FileData, RepositorySnapshot
@@ -42,7 +41,7 @@ class ProcessingEngine:
         self.semaphore = asyncio.Semaphore(self.max_concurrency)
 
         # Initialize components
-        self.llm_client: Optional[LLMClient] = None  # Properly typed to allow None or LLMClient
+        self.llm_client: LLMClient | None = None  # Properly typed to allow None or LLMClient
         self._init_components()
 
     def _init_components(self) -> None:

@@ -9,7 +9,6 @@ import asyncio
 import fnmatch
 import os
 from pathlib import Path
-from typing import Optional, Union
 
 from repoinsight.config.models import FilePatterns
 
@@ -21,11 +20,11 @@ class RepositoryScanner:
 
     def __init__(
         self,
-        root_path: Union[str, Path],
-        file_patterns: Optional[FilePatterns] = None,
-        exclude_dirs: Optional[list[str]] = None,
-        scan_dirs: Optional[list[str]] = None,
-    ):
+        root_path: str | Path,
+        file_patterns: FilePatterns | None = None,
+        exclude_dirs: list[str] | None = None,
+        scan_dirs: list[str] | None = None,
+    ) -> None:
         """
         Initialize a repository scanner.
 
@@ -69,11 +68,7 @@ class RepositoryScanner:
                 return True
 
         # Check patterns
-        for pattern in self.exclude_dirs:
-            if fnmatch.fnmatch(dir_str, pattern):
-                return True
-
-        return False
+        return any(fnmatch.fnmatch(dir_str, pattern) for pattern in self.exclude_dirs)
 
     def is_included_file(self, file_path: Path) -> bool:
         """
@@ -103,12 +98,7 @@ class RepositoryScanner:
                 return False
 
         # Then check inclusion patterns
-        for pattern in self.file_patterns.include:
-            if fnmatch.fnmatch(file_str, pattern):
-                return True
-
-        # Default to exclusion if no patterns match
-        return False
+        return any(fnmatch.fnmatch(file_str, pattern) for pattern in self.file_patterns.include)
 
     def scan(self) -> list[Path]:
         """
@@ -244,7 +234,7 @@ class FileTypeDetector:
     }
 
     @classmethod
-    def detect_language(cls, file_path: Union[str, Path]) -> str:
+    def detect_language(cls, file_path: str | Path) -> str:
         """
         Detect the programming language of a file.
 

@@ -1,6 +1,7 @@
 # Advanced Features
 
 ## Knowledge Graph Construction
+
 - Implement directed graph representation of code relationships
 - Track file-to-file dependencies
 - Record function and class relationships
@@ -8,6 +9,7 @@
 - Generate insights based on graph metrics
 
 ## Plugin Architecture
+
 - Design abstract plugin interfaces
 - Support language-specific plugins for enhanced analysis
 - Enable version comparison plugins
@@ -16,6 +18,7 @@
 - Follow strict security model for plugin isolation
 
 ## Multi-Agent Processing
+
 - Coordinate multiple specialized agents
 - Implement pipeline stages for code analysis
 - Share context efficiently between agents
@@ -24,6 +27,7 @@
 - Handle graceful degradation when specific agents are unavailable
 
 ## Advanced LLM Integration
+
 - Support batched processing for efficiency
 - Implement fallback mechanism for failed requests
 - Fine-tune prompts based on file language and structure

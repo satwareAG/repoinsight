@@ -38,7 +38,11 @@ class LLMConfig(BaseModel):
     timeout: int = Field(default=30, description="API request timeout in seconds")
     cache_enabled: bool = Field(default=True, description="Enable caching of LLM responses")
     system_prompt_template: str = Field(
-        default="Analyze the following {language} code and provide a concise description in markdown format. Focus on the main purpose, key functionality, and important patterns or techniques used. Keep the description under 5 sentences.",
+        default=(
+            "Analyze the following {language} code and provide a concise description in markdown format. "
+            "Focus on the main purpose, key functionality, and important patterns or techniques used. "
+            "Keep the description under 5 sentences."
+        ),
         description="System prompt template for the LLM",
     )
 

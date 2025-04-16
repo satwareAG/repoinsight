@@ -6,7 +6,6 @@ This module handles the extraction and formatting of Git metadata for documentat
 
 import datetime
 from pathlib import Path
-from typing import Union
 
 from repoinsight.git.repository import GitRepository
 
@@ -16,7 +15,7 @@ class GitMetadataExtractor:
     Extracts formatted metadata from Git repositories for documentation.
     """
 
-    def __init__(self, repository: GitRepository):
+    def __init__(self, repository: GitRepository) -> None:
         """
         Initialize a Git metadata extractor.
 
@@ -78,10 +77,7 @@ class GitMetadataExtractor:
 
             for key, value in data.items():
                 # Handle special cases like lists
-                if isinstance(value, list):
-                    value_str = ", ".join(value)
-                else:
-                    value_str = str(value)
+                value_str = ", ".join(value) if isinstance(value, list) else str(value)
 
                 lines.append(f"- **{key}:** {value_str}")
 
@@ -89,7 +85,7 @@ class GitMetadataExtractor:
 
         return "\n".join(lines)
 
-    async def generate_file_metadata(self, file_path: Union[str, Path]) -> dict:
+    async def generate_file_metadata(self, file_path: str | Path) -> dict:
         """
         Generate metadata for a specific file, including Git history if available.
 
@@ -185,9 +181,8 @@ class GitMetadataExtractor:
         """Format file size in a human-readable way."""
         if size_bytes < 1024:
             return f"{size_bytes} bytes"
-        elif size_bytes < 1024 * 1024:
+        if size_bytes < 1024 * 1024:
             return f"{size_bytes / 1024:.1f} KB"
-        elif size_bytes < 1024 * 1024 * 1024:
+        if size_bytes < 1024 * 1024 * 1024:
             return f"{size_bytes / (1024 * 1024):.1f} MB"
-        else:
-            return f"{size_bytes / (1024 * 1024 * 1024):.1f} GB"
+        return f"{size_bytes / (1024 * 1024 * 1024):.1f} GB"

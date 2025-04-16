@@ -5,8 +5,8 @@ This module provides building blocks for generating various components
 of the Markdown documentation.
 """
 
+import contextlib
 from pathlib import Path
-from typing import Optional, Union
 
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
@@ -216,9 +216,7 @@ class MarkdownComponents:
         return "## Table of Contents\n\n"
 
     @staticmethod
-    def file_header(
-        file_path: Union[str, Path], relative_to: Optional[Union[str, Path]] = None
-    ) -> str:
+    def file_header(file_path: str | Path, relative_to: str | Path | None = None) -> str:
         """
         Generate a file header with path and language.
 
@@ -233,11 +231,9 @@ class MarkdownComponents:
 
         # Make path relative if requested
         if relative_to:
-            try:
+            with contextlib.suppress(ValueError):
                 path = path.relative_to(relative_to)
-            except ValueError:
-                # If path is not relative to relative_to, use absolute path
-                pass
+                # If ValueError is raised, path remains unchanged (absolute)
 
         # Get file language
         language = FileTypeDetector.detect_language(path)
@@ -249,9 +245,7 @@ class MarkdownComponents:
         return header
 
     @staticmethod
-    def file_content(
-        file_path: Union[str, Path], content: str, syntax_highlighting: bool = True
-    ) -> str:
+    def file_content(file_path: str | Path, content: str, syntax_highlighting: bool = True) -> str:
         """
         Generate a Markdown code block for file content with proper syntax highlighting.
 
@@ -269,9 +263,9 @@ class MarkdownComponents:
             # Try to get the language from the file extension
             language = FileTypeDetector.detect_language(path)
             return MarkdownComponents.code_block(content, language)
-        else:
-            # Use a plain code block without syntax highlighting
-            return MarkdownComponents.code_block(content)
+        
+        # Use a plain code block without syntax highlighting
+        return MarkdownComponents.code_block(content)
 
     @staticmethod
     def file_description(description: str) -> str:

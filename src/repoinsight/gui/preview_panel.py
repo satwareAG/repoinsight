@@ -30,7 +30,7 @@ class MarkdownPreviewPanel(QWidget):
     and a plain text view of the raw markdown content.
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
 
         self.markdown_content = ""
@@ -38,7 +38,7 @@ class MarkdownPreviewPanel(QWidget):
         # Initialize UI
         self._init_ui()
 
-    def _init_ui(self):
+    def _init_ui(self) -> None:
         """Initialize the UI components."""
         # Create main layout
         main_layout = QVBoxLayout(self)
@@ -59,7 +59,9 @@ class MarkdownPreviewPanel(QWidget):
 
         # Add web view for rendered markdown
         self.web_view = QWebEngineView()
-        self.web_view.setContextMenuPolicy(Qt.NoContextMenu)  # Disable right-click menu
+        self.web_view.setContextMenuPolicy(
+            Qt.ContextMenuPolicy.NoContextMenu
+        )  # Disable right-click menu
         rendered_layout.addWidget(self.web_view)
 
         self.tab_widget.addTab(self.rendered_tab, "Rendered")
@@ -94,7 +96,7 @@ class MarkdownPreviewPanel(QWidget):
 
         main_layout.addLayout(controls_layout)
 
-    def set_markdown(self, content):
+    def set_markdown(self, content: str) -> None:
         """Set the markdown content to display."""
         if content == self.markdown_content:
             return
@@ -107,7 +109,7 @@ class MarkdownPreviewPanel(QWidget):
         # Update rendered view
         self._update_rendered_view()
 
-    def _update_rendered_view(self):
+    def _update_rendered_view(self) -> None:
         """Update the rendered markdown view."""
         if not self.markdown_content:
             self.web_view.setHtml("<p>No content to display.</p>")
@@ -124,7 +126,8 @@ class MarkdownPreviewPanel(QWidget):
             <meta charset="UTF-8">
             <style>
                 body {{
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
+                    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                     line-height: 1.6;
                     color: #333;
                     max-width: 900px;
@@ -193,15 +196,15 @@ class MarkdownPreviewPanel(QWidget):
             </div>
         </body>
         </html>
-        """
+        """  # noqa: E501
 
         self.web_view.setHtml(html_content)
 
-    def _refresh_preview(self):
+    def _refresh_preview(self) -> None:
         """Refresh the preview."""
         self._update_rendered_view()
 
-    def _save_markdown(self):
+    def _save_markdown(self) -> None:
         """Save the markdown content to a file."""
         # In a real implementation, we would show a file dialog
         # and save the content to the selected file

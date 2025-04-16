@@ -11,7 +11,7 @@ import json
 import logging
 import time
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any
 
 import aiohttp
 
@@ -28,12 +28,12 @@ class LLMClient:
     def __init__(
         self,
         base_url: str = "http://localhost:8000/v1",
-        api_key: Optional[str] = None,
+        api_key: str | None = None,
         timeout: int = 30,
         max_retries: int = 3,
         retry_delay: int = 2,
-        cache_dir: Optional[Union[str, Path]] = None,
-    ):
+        cache_dir: str | Path | None = None,
+    ) -> None:
         """
         Initialize an LLM client.
 
@@ -63,7 +63,7 @@ class LLMClient:
             headers["Authorization"] = f"Bearer {self.api_key}"
         return headers
 
-    def _get_cache_path(self, cache_key: str) -> Optional[Path]:
+    def _get_cache_path(self, cache_key: str) -> Path | None:
         """Get the cache file path for a given key."""
         if not self.cache_dir:
             return None
@@ -72,7 +72,7 @@ class LLMClient:
         key_hash = hashlib.md5(cache_key.encode()).hexdigest()
         return self.cache_dir / f"{key_hash}.json"
 
-    async def _get_from_cache(self, cache_key: str) -> Optional[dict[str, Any]]:
+    async def _get_from_cache(self, cache_key: str) -> dict[str, Any] | None:
         """Try to get a response from the cache."""
         if not self.cache_dir:
             return None
@@ -86,10 +86,9 @@ class LLMClient:
                 cache_data = json.load(f)
 
             # Check if the cache has expired (if expiration is set)
-            if "expiration" in cache_data:
-                if cache_data["expiration"] < time.time():
-                    # Cache expired
-                    return None
+            if "expiration" in cache_data and cache_data["expiration"] < time.time():
+                # Cache expired
+                return None
 
             return cache_data.get("response")
         except (OSError, json.JSONDecodeError) as e:
@@ -97,7 +96,7 @@ class LLMClient:
             return None
 
     async def _save_to_cache(
-        self, cache_key: str, response: dict[str, Any], ttl: Optional[int] = None
+        self, cache_key: str, response: dict[str, Any], ttl: int | None = None
     ) -> None:
         """Save a response to the cache."""
         if not self.cache_dir:
@@ -123,7 +122,7 @@ class LLMClient:
             logger.warning(f"Error writing to cache: {e}")
 
     def _compute_cache_key(
-        self, model: str, messages: list[dict[str, str]], additional_key: Optional[str] = None
+        self, model: str, messages: list[dict[str, str]], additional_key: str | None = None
     ) -> str:
         """Compute a cache key for the request."""
         # Create a dictionary of the request parameters
@@ -147,12 +146,12 @@ class LLMClient:
         model: str,
         messages: list[dict[str, str]],
         temperature: float = 0.7,
-        max_tokens: Optional[int] = None,
-        top_p: Optional[float] = None,
-        frequency_penalty: Optional[float] = None,
-        presence_penalty: Optional[float] = None,
-        stop: Optional[Union[str, list[str]]] = None,
-        cache_key: Optional[str] = None,
+        max_tokens: int | None = None,
+        top_p: float | None = None,
+        frequency_penalty: float | None = None,
+        presence_penalty: float | None = None,
+        stop: str | list[str] | None = None,
+        cache_key: str | None = None,
         use_cache: bool = True,
     ) -> dict[str, Any]:
         """
@@ -203,32 +202,30 @@ class LLMClient:
         # Make the API request with retries
         for attempt in range(self.max_retries):
             try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.post(
-                        f"{self.base_url}/chat/completions",
-                        headers=self._get_default_headers(),
-                        json=payload,
-                        timeout=self.timeout,
-                    ) as response:
-                        if response.status == 200:
-                            result = await response.json()
+                async with aiohttp.ClientSession() as session, session.post(
+                    f"{self.base_url}/chat/completions",
+                    headers=self._get_default_headers(),
+                    json=payload,
+                    timeout=self.timeout,
+                ) as response:
+                    if response.status == 200:
+                        result = await response.json()
 
-                            # Save to cache if enabled
-                            if use_cache and self.cache_dir:
-                                await self._save_to_cache(computed_cache_key, result)
+                        # Save to cache if enabled
+                        if use_cache and self.cache_dir:
+                            await self._save_to_cache(computed_cache_key, result)
 
-                            return result
-                        else:
-                            error_text = await response.text()
-                            logger.error(
-                                f"API error (attempt {attempt+1}/{self.max_retries}): "
-                                f"Status {response.status} - {error_text}"
-                            )
+                        return result
+                    error_text = await response.text()
+                    logger.error(
+                        f"API error (attempt {attempt+1}/{self.max_retries}): "
+                        f"Status {response.status} - {error_text}"
+                    )
 
-                            # If we've exhausted retries, raise an exception
-                            if attempt == self.max_retries - 1:
-                                response.raise_for_status()
-            except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+                    # If we've exhausted retries, raise an exception
+                    if attempt == self.max_retries - 1:
+                        response.raise_for_status()
+            except (TimeoutError, aiohttp.ClientError) as e:
                 logger.error(f"Request error (attempt {attempt+1}/{self.max_retries}): {e}")
 
                 # If we've exhausted retries, re-raise the exception
@@ -243,14 +240,14 @@ class LLMClient:
 
     async def generate_description(
         self,
-        file_path: Union[str, Path],
+        file_path: str | Path,
         file_content: str,
         language: str,
         model: str = "llama3",
         temperature: float = 0.3,
         max_tokens: int = 500,
-        system_prompt_template: Optional[str] = None,
-        commit_hash: Optional[str] = None,
+        system_prompt_template: str | None = None,
+        commit_hash: str | None = None,
     ) -> str:
         """
         Generate a description for a source code file.
@@ -304,9 +301,9 @@ class LLMClient:
             # Extract and return the generated description
             if "choices" in response and len(response["choices"]) > 0:
                 return response["choices"][0]["message"]["content"].strip()
-            else:
-                logger.warning(f"Unexpected response format: {response}")
-                return "Error: Unexpected response format from LLM API."
+            
+            logger.warning(f"Unexpected response format: {response}")
+            return "Error: Unexpected response format from LLM API."
         except Exception as e:
             logger.error(f"Error generating description: {e}")
             return f"Error generating description: {str(e)}"

@@ -7,6 +7,7 @@ asynchronously in the GUI.
 
 import asyncio
 import logging
+from typing import Never
 
 from PySide6.QtCore import QObject, QThread, Signal, Slot
 
@@ -29,7 +30,7 @@ class AsyncWorker(QObject):
     finished = Signal(object)  # Result object
     error = Signal(str)  # Error message
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: QObject | None = None) -> None:
         super().__init__(parent)
         self._running = False
         self._loop = None
@@ -39,7 +40,7 @@ class AsyncWorker(QObject):
         """Check if the worker is currently running."""
         return self._running
 
-    def start(self):
+    def start(self) -> None:
         """Start the worker in a separate thread."""
         if self._running:
             return
@@ -55,7 +56,7 @@ class AsyncWorker(QObject):
         self._running = True
         self._thread.start()
 
-    def stop(self):
+    def stop(self) -> None:
         """Stop the worker."""
         if not self._running:
             return
@@ -69,7 +70,7 @@ class AsyncWorker(QObject):
             self._thread = None
 
     @Slot()
-    def _run(self):
+    def _run(self) -> None:
         """Worker thread entry point. Creates an event loop and runs the task."""
         try:
             # Create a new event loop for this thread
@@ -93,7 +94,7 @@ class AsyncWorker(QObject):
             self._loop.close()
             self._loop = None
 
-    async def _run_task(self):
+    async def _run_task(self) -> Never:
         """Run the actual task. Must be implemented by subclasses."""
         raise NotImplementedError("Subclasses must implement _run_task")
 
@@ -106,11 +107,11 @@ class DocumentationWorker(AsyncWorker):
     documentation based on the provided configuration.
     """
 
-    def __init__(self, config: RepoInsightConfig, parent=None):
+    def __init__(self, config: RepoInsightConfig, parent: QObject | None = None) -> None:
         super().__init__(parent)
         self.config = config
 
-    async def _run_task(self):
+    async def _run_task(self) -> str | None:
         """Run the documentation generation task."""
         try:
             # Report initial progress

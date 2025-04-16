@@ -163,17 +163,17 @@ class PromptTemplates:
         # Check for language aliases
         if norm_language in ["js", "jsx"]:
             return cls.LANGUAGE_TEMPLATES["javascript"]
-        elif norm_language in ["ts", "tsx"]:
+        if norm_language in ["ts", "tsx"]:
             return cls.LANGUAGE_TEMPLATES["typescript"]
-        elif norm_language in ["py"]:
+        if norm_language in ["py"]:
             return cls.LANGUAGE_TEMPLATES["python"]
-        elif norm_language in ["scss", "less"]:
+        if norm_language in ["scss", "less"]:
             return cls.LANGUAGE_TEMPLATES["css"]
-        elif norm_language in ["yml"]:
+        if norm_language in ["yml"]:
             return cls.LANGUAGE_TEMPLATES["yaml"]
-        elif norm_language in ["sh", "shell", "zsh"]:
+        if norm_language in ["sh", "shell", "zsh"]:
             return cls.LANGUAGE_TEMPLATES["bash"]
-        elif norm_language in ["md"]:
+        if norm_language in ["md"]:
             return cls.LANGUAGE_TEMPLATES["markdown"]
 
         # Fallback to default template

@@ -7,7 +7,6 @@ extracting metadata, and analyzing commits.
 
 import datetime
 from pathlib import Path
-from typing import Union
 
 import git
 from git import Repo
@@ -18,7 +17,7 @@ class GitRepository:
     Wrapper class for Git repository operations.
     """
 
-    def __init__(self, repo_path: Union[str, Path]):
+    def __init__(self, repo_path: str | Path) -> None:
         """
         Initialize a Git repository wrapper.
 
@@ -26,16 +25,16 @@ class GitRepository:
             repo_path: Path to the Git repository
         """
         self.repo_path = Path(repo_path)
-        self._repo = None
+        self._repo: Repo | None = None
 
     @property
-    def repo(self) -> Repo:
+    def repo(self) -> Repo | None:
         """Get the GitPython Repo instance, initializing it if needed."""
         if self._repo is None:
             self._repo = self._initialize_repo()
         return self._repo
 
-    def _initialize_repo(self) -> Repo:
+    def _initialize_repo(self) -> Repo | None:
         """Initialize and return the GitPython Repo instance."""
         try:
             return Repo(self.repo_path)
@@ -46,8 +45,9 @@ class GitRepository:
     def is_git_repository(self) -> bool:
         """Check if the path is a valid Git repository."""
         try:
-            self.repo  # This will initialize if needed
-            return self._repo is not None
+        # Access the repo property to initialize if needed
+        # Using repo property triggers initialization
+        return self.repo is not None
         except (git.InvalidGitRepositoryError, git.NoSuchPathError):
             return False
 
@@ -85,7 +85,7 @@ class GitRepository:
 
     def get_active_branch(self) -> str:
         """Get the active branch name."""
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return "N/A"
 
         try:
@@ -96,21 +96,23 @@ class GitRepository:
 
     def get_head_commit_hash(self) -> str:
         """Get the HEAD commit hash."""
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return "N/A"
 
         return self.repo.head.commit.hexsha
 
     def get_head_commit_message(self) -> str:
         """Get the HEAD commit message."""
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return "N/A"
 
-        return self.repo.head.commit.message.strip()
+        # Ensure we're returning a string
+        message = self.repo.head.commit.message
+        return message.strip() if isinstance(message, str) else str(message).strip()
 
     def get_head_commit_date(self) -> str:
         """Get the HEAD commit date as ISO format string."""
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return "N/A"
 
         timestamp = self.repo.head.commit.committed_date
@@ -119,19 +121,19 @@ class GitRepository:
 
     def get_head_commit_author(self) -> str:
         """Get the HEAD commit author."""
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return "N/A"
 
         return f"{self.repo.head.commit.author.name} <{self.repo.head.commit.author.email}>"
 
     def get_remote_urls(self) -> list[str]:
         """Get a list of remote repository URLs."""
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return []
 
-        return [remote.url for remote in self.repo.remotes]
+        return [str(remote.url) for remote in self.repo.remotes]
 
-    def get_file_history(self, file_path: Union[str, Path]) -> list[dict]:
+    def get_file_history(self, file_path: str | Path) -> list[dict]:
         """
         Get the commit history for a specific file.
 
@@ -141,7 +143,7 @@ class GitRepository:
         Returns:
             List of dictionaries containing commit information
         """
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return []
 
         rel_path = Path(file_path).relative_to(self.repo_path)
@@ -169,7 +171,7 @@ class GitRepository:
             # Return empty list if file history cannot be determined
             return []
 
-    def get_file_blame(self, file_path: Union[str, Path]) -> list[dict]:
+    def get_file_blame(self, file_path: str | Path) -> list[dict]:
         """
         Get blame information for a specific file.
 
@@ -179,7 +181,7 @@ class GitRepository:
         Returns:
             List of dictionaries containing blame information per line
         """
-        if not self.is_git_repository():
+        if not self.is_git_repository() or self.repo is None:
             return []
 
         rel_path = Path(file_path).relative_to(self.repo_path)

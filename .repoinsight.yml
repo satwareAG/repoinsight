@@ -2,23 +2,23 @@ name: repoinsight
 root_path: /home/mw/Projects/satware/repoinsight
 output_path: null
 scan_directories:
-- .
+  - .
 exclude_directories:
-- venv
-- node_modules
-- .git
+  - venv
+  - node_modules
+  - .git
 file_patterns:
   include:
-  - '*.py'
-  - '*.js'
-  - '*.html'
-  - '*.css'
-  - '*.md'
+    - "*.py"
+    - "*.js"
+    - "*.html"
+    - "*.css"
+    - "*.md"
   exclude:
-  - '*__pycache__*'
-  - '*.git*'
-  - '*.pyc'
-  - node_modules/*
+    - "*__pycache__*"
+    - "*.git*"
+    - "*.pyc"
+    - node_modules/*
 llm:
   enabled: true
   provider: cortex
@@ -29,7 +29,8 @@ llm:
   max_tokens: 500
   timeout: 30
   cache_enabled: true
-  system_prompt_template: Analyze the following {language} code and provide a concise
+  system_prompt_template:
+    Analyze the following {language} code and provide a concise
     description in markdown format. Focus on the main purpose, key functionality,
     and important patterns or techniques used. Keep the description under 5 sentences.
 processing:

@@ -5,17 +5,19 @@ This module provides functionality to load and save configuration files in YAML 
 with proper validation using the Pydantic models.
 """
 
+import logging
 import os
 from pathlib import Path
-from typing import Optional, Union
 
-import yaml
+import yaml  # type: ignore
 from pydantic import ValidationError
 
 from repoinsight.config.models import RepoInsightConfig
 
+logger = logging.getLogger(__name__)
 
-def load_config(config_path: Union[str, Path]) -> RepoInsightConfig:
+
+def load_config(config_path: str | Path) -> RepoInsightConfig:
     """
     Load and validate a configuration file.
 
@@ -41,12 +43,14 @@ def load_config(config_path: Union[str, Path]) -> RepoInsightConfig:
         return RepoInsightConfig(**config_data)
     except ValidationError as e:
         # Re-raise with more context
+        error_msg = f"Invalid configuration in {config_path}: {e.errors()}"
+        logger.error(error_msg)
         raise ValidationError(
-            f"Invalid configuration in {config_path}: {e.errors()}", e.model
-        ) from e
+            e.errors()
+        ) from e  # Re-use only the errors from the original ValidationError
 
 
-def save_config(config: RepoInsightConfig, config_path: Union[str, Path]) -> None:
+def save_config(config: RepoInsightConfig, config_path: str | Path) -> None:
     """
     Save a configuration to a YAML file.
 
@@ -70,9 +74,9 @@ def save_config(config: RepoInsightConfig, config_path: Union[str, Path]) -> Non
 
 
 def find_config_file(
-    directory: Optional[Union[str, Path]] = None,
-    config_names: Optional[list[str]] = None,
-) -> Optional[Path]:
+    directory: str | Path | None = None,
+    config_names: list[str] | None = None,
+) -> Path | None:
     """
     Find a configuration file in the specified directory or its parents.
 
@@ -137,7 +141,7 @@ class ConfigManager:
     Manager for RepoInsight configurations with profile support.
     """
 
-    def __init__(self, config_dir: Optional[Union[str, Path]] = None):
+    def __init__(self, config_dir: str | Path | None = None) -> None:
         self.config_dir = Path(config_dir) if config_dir else get_user_config_dir()
         self.config_dir.mkdir(parents=True, exist_ok=True)
         self.profiles_dir = self.config_dir / "profiles"
@@ -175,7 +179,7 @@ class ConfigManager:
 
         return load_config(yaml_path)
 
-    def save_profile(self, config: RepoInsightConfig, profile_name: Optional[str] = None) -> None:
+    def save_profile(self, config: RepoInsightConfig, profile_name: str | None = None) -> None:
         """
         Save a configuration profile.
 

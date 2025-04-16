@@ -206,14 +206,14 @@ class CacheManager:
                 "cache_dir": str(self.cache_dir),
             }
 
-    def _format_size(self, size_bytes: int | float) -> str:
+    def _format_size(self, size_bytes: float) -> str:
         """Format a size in bytes to a human-readable string."""
         size_bytes_float = float(size_bytes)  # Convert to float for division
-        if size_bytes < 1024:
-            return f"{size_bytes} bytes"
-        elif size_bytes < 1024 * 1024:
+        # Use int for exact byte count if under 1KB
+        if size_bytes_float < 1024:
+            return f"{int(size_bytes_float)} bytes"
+        if size_bytes_float < 1024 * 1024:
             return f"{size_bytes_float / 1024:.1f} KB"
-        elif size_bytes < 1024 * 1024 * 1024:
+        if size_bytes_float < 1024 * 1024 * 1024:
             return f"{size_bytes_float / (1024 * 1024):.1f} MB"
-        else:
-            return f"{size_bytes_float / (1024 * 1024 * 1024):.1f} GB"
+        return f"{size_bytes_float / (1024 * 1024 * 1024):.1f} GB"

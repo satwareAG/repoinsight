@@ -45,7 +45,7 @@ class ConfigPanel(QWidget):
     # Signals
     config_changed = Signal(RepoInsightConfig)
 
-    def __init__(self, parent=None) -> None:
+    def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
 
         self.config = None
@@ -379,22 +379,25 @@ class ConfigPanel(QWidget):
             self, "Select Directory to Scan", str(Path(self.root_path_edit.text()))
         )
 
-        if directory:
-            # Convert to relative path if possible
-            try:
-                root_path = Path(self.root_path_edit.text())
-                scan_path = Path(directory)
-                relative_path = scan_path.relative_to(root_path)
-                directory = str(relative_path)
-            except ValueError:
-                # Not a relative path, use absolute
-                pass
+        if not directory:
+            return
+            
+        # Convert to relative path if possible
+        try:
+            root_path = Path(self.root_path_edit.text())
+            scan_path = Path(directory)
+            relative_path = scan_path.relative_to(root_path)
+            directory = str(relative_path)
+        except ValueError:
+            # Not a relative path, use absolute
+            pass
 
-            # Add to list if not already present
-            if directory not in [
-                self.scan_dirs_list.item(i).text() for i in range(self.scan_dirs_list.count())
-            ]:
-                self.scan_dirs_list.addItem(directory)
+        # Add to list if not already present
+        existing_items = [
+            self.scan_dirs_list.item(i).text() for i in range(self.scan_dirs_list.count())
+        ]
+        if directory not in existing_items:
+            self.scan_dirs_list.addItem(directory)
 
     def _remove_scan_dir(self) -> None:
         """Remove a scan directory."""
@@ -408,23 +411,26 @@ class ConfigPanel(QWidget):
             self, "Select Directory to Exclude", str(Path(self.root_path_edit.text()))
         )
 
-        if directory:
-            # Convert to relative path if possible
-            try:
-                root_path = Path(self.root_path_edit.text())
-                exclude_path = Path(directory)
-                relative_path = exclude_path.relative_to(root_path)
-                directory = str(relative_path)
-            except ValueError:
-                # Just get the directory name in this case
-                directory = Path(directory).name
+        if not directory:
+            return
+            
+        # Convert to relative path if possible
+        try:
+            root_path = Path(self.root_path_edit.text())
+            exclude_path = Path(directory)
+            relative_path = exclude_path.relative_to(root_path)
+            directory = str(relative_path)
+        except ValueError:
+            # Just get the directory name in this case
+            directory = Path(directory).name
 
-            # Add to list if not already present
-            if directory not in [
-                self.exclude_dirs_list.item(i).text()
-                for i in range(self.exclude_dirs_list.count())
-            ]:
-                self.exclude_dirs_list.addItem(directory)
+        # Add to list if not already present
+        existing_items = [
+            self.exclude_dirs_list.item(i).text()
+            for i in range(self.exclude_dirs_list.count())
+        ]
+        if directory not in existing_items:
+            self.exclude_dirs_list.addItem(directory)
 
     def _remove_exclude_dir(self) -> None:
         """Remove an exclude directory."""
@@ -439,13 +445,13 @@ class ConfigPanel(QWidget):
             self, "Add Include Pattern", "Enter glob pattern to include files:", text="*.py"
         )
 
-        if ok and pattern:
-            # Add to list if not already present
-            if pattern not in [
-                self.include_patterns_list.item(i).text()
-                for i in range(self.include_patterns_list.count())
-            ]:
-                self.include_patterns_list.addItem(pattern)
+        # Use a single if statement with logical AND
+        existing_patterns = [
+            self.include_patterns_list.item(i).text()
+            for i in range(self.include_patterns_list.count())
+        ]
+        if ok and pattern and pattern not in existing_patterns:
+            self.include_patterns_list.addItem(pattern)
 
     def _remove_include_pattern(self) -> None:
         """Remove an include pattern."""
@@ -460,13 +466,13 @@ class ConfigPanel(QWidget):
             self, "Add Exclude Pattern", "Enter glob pattern to exclude files:", text="*.pyc"
         )
 
-        if ok and pattern:
-            # Add to list if not already present
-            if pattern not in [
-                self.exclude_patterns_list.item(i).text()
-                for i in range(self.exclude_patterns_list.count())
-            ]:
-                self.exclude_patterns_list.addItem(pattern)
+        # Use a single if statement with logical AND
+        existing_patterns = [
+            self.exclude_patterns_list.item(i).text()
+            for i in range(self.exclude_patterns_list.count())
+        ]
+        if ok and pattern and pattern not in existing_patterns:
+            self.exclude_patterns_list.addItem(pattern)
 
     def _remove_exclude_pattern(self) -> None:
         """Remove an exclude pattern."""
@@ -474,7 +480,7 @@ class ConfigPanel(QWidget):
         for item in selected_items:
             self.exclude_patterns_list.takeItem(self.exclude_patterns_list.row(item))
 
-    def set_config(self, config) -> None:
+    def set_config(self, config: RepoInsightConfig) -> None:
         """Set the configuration to edit."""
         self.config = config
 

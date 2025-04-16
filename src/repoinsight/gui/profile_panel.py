@@ -1,5 +1,3 @@
-
-
 """
 Profile management panel for RepoInsight GUI.
 
@@ -8,9 +6,9 @@ This module provides components for managing configuration profiles.
 
 import logging
 from pathlib import Path
-from typing import Optional, List, Dict, Union
+from typing import TYPE_CHECKING
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QModelIndex, QPoint, Qt, Signal
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -26,6 +24,9 @@ from PySide6.QtWidgets import (
 )
 
 from repoinsight.config.models import RepoInsightConfig
+
+if TYPE_CHECKING:
+    from repoinsight.config.yaml import ConfigManager
 
 logger = logging.getLogger(__name__)
 
@@ -43,11 +44,11 @@ class ProfilePanel(QWidget):
     profile_created = Signal(RepoInsightConfig)
     profile_deleted = Signal(str)  # Profile name
 
-    def __init__(self, config_manager, parent=None) -> None:
+    def __init__(self, config_manager: 'ConfigManager', parent: QWidget | None = None) -> None:
         super().__init__(parent)
 
         self.config_manager = config_manager
-        self.current_profile_name: Optional[str] = None
+        self.current_profile_name: str | None = None
 
         # Initialize UI
         self._init_ui()
@@ -69,8 +70,8 @@ class ProfilePanel(QWidget):
         self.profile_model = QStandardItemModel(self)
         self.profile_list = QListView()
         self.profile_list.setModel(self.profile_model)
-        self.profile_list.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.profile_list.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.profile_list.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.profile_list.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.profile_list.clicked.connect(self._on_profile_clicked)
         self.profile_list.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.profile_list.customContextMenuRequested.connect(self._show_context_menu)
@@ -126,7 +127,7 @@ class ProfilePanel(QWidget):
             self.profile_list.setCurrentIndex(self.profile_model.index(0, 0))
             self._on_profile_clicked(self.profile_model.index(0, 0))
 
-    def _select_profile_by_name(self, profile_name) -> bool:
+    def _select_profile_by_name(self, profile_name: str) -> bool:
         """Select a profile by name."""
         for row in range(self.profile_model.rowCount()):
             item = self.profile_model.item(row)
@@ -135,7 +136,7 @@ class ProfilePanel(QWidget):
                 return True
         return False
 
-    def _on_profile_clicked(self, index) -> None:
+    def _on_profile_clicked(self, index: QModelIndex) -> None:
         """Handle profile selection."""
         if not index.isValid():
             return
@@ -161,7 +162,7 @@ class ProfilePanel(QWidget):
                 self, "Profile Error", f"Error loading profile '{profile_name}': {str(e)}"
             )
 
-    def _show_context_menu(self, position) -> None:
+    def _show_context_menu(self, position: QPoint) -> None:
         """Show context menu for the profile list."""
         index = self.profile_list.indexAt(position)
         if not index.isValid():
@@ -214,7 +215,7 @@ class ProfilePanel(QWidget):
             # Emit signal
             self.profile_created.emit(config)
 
-    def _rename_profile(self, index=None) -> None:
+    def _rename_profile(self, index: QModelIndex | None = None) -> None:
         """Rename the selected profile."""
         if index is None:
             index = self.profile_list.currentIndex()
@@ -268,7 +269,7 @@ class ProfilePanel(QWidget):
                 logger.error(f"Error renaming profile {profile_name} to {new_name}: {e}")
                 QMessageBox.warning(self, "Profile Error", f"Error renaming profile: {str(e)}")
 
-    def _duplicate_profile(self, index=None) -> None:
+    def _duplicate_profile(self, index: QModelIndex | None = None) -> None:
         """Duplicate the selected profile."""
         if index is None:
             index = self.profile_list.currentIndex()
@@ -312,7 +313,7 @@ class ProfilePanel(QWidget):
             logger.error(f"Error duplicating profile {profile_name}: {e}")
             QMessageBox.warning(self, "Profile Error", f"Error duplicating profile: {str(e)}")
 
-    def _delete_profile(self, index=None) -> None:
+    def _delete_profile(self, index: QModelIndex | None = None) -> None:
         """Delete the selected profile."""
         if index is None:
             index = self.profile_list.currentIndex()

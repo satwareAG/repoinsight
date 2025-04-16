@@ -23,7 +23,7 @@ class MarkdownGenerator:
         include_file_stats: bool = True,
         include_commit_info: bool = True,
         syntax_highlighting: bool = True,
-    ):
+    ) -> None:
         """
         Initialize a Markdown generator.
 
@@ -302,9 +302,8 @@ class MarkdownGenerator:
         """Format file size in a human-readable way."""
         if size_bytes < 1024:
             return f"{size_bytes} bytes"
-        elif size_bytes < 1024 * 1024:
+        if size_bytes < 1024 * 1024:
             return f"{size_bytes / 1024:.1f} KB"
-        elif size_bytes < 1024 * 1024 * 1024:
+        if size_bytes < 1024 * 1024 * 1024:
             return f"{size_bytes / (1024 * 1024):.1f} MB"
-        else:
-            return f"{size_bytes / (1024 * 1024 * 1024):.1f} GB"
+        return f"{size_bytes / (1024 * 1024 * 1024):.1f} GB"

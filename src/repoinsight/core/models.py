@@ -7,7 +7,6 @@ and other entities in the processing pipeline.
 
 import datetime
 from pathlib import Path
-from typing import Optional, Union
 
 
 class FileData:
@@ -17,11 +16,11 @@ class FileData:
 
     def __init__(
         self,
-        path: Union[str, Path],
-        content: Optional[str] = None,
-        description: Optional[str] = None,
-        metadata: Optional[dict] = None,
-    ):
+        path: str | Path,
+        content: str | None = None,
+        description: str | None = None,
+        metadata: dict | None = None,
+    ) -> None:
         """
         Initialize file data.
 
@@ -77,11 +76,11 @@ class RepositorySnapshot:
     def __init__(
         self,
         name: str,
-        root_path: Union[str, Path],
-        files: Optional[list[FileData]] = None,
-        metadata: Optional[dict] = None,
-        generation_timestamp: Optional[str] = None,
-    ):
+        root_path: str | Path,
+        files: list[FileData] | None = None,
+        metadata: dict | None = None,
+        generation_timestamp: str | None = None,
+    ) -> None:
         """
         Initialize repository snapshot.
 
@@ -148,7 +147,7 @@ class RepositorySnapshot:
             generation_timestamp=data.get("generation_timestamp"),
         )
 
-    def save_to_file(self, file_path: Union[str, Path]) -> None:
+    def save_to_file(self, file_path: str | Path) -> None:
         """
         Save the repository snapshot to a JSON file.
 
@@ -170,7 +169,7 @@ class RepositorySnapshot:
             json.dump(snapshot_dict, f, indent=2)
 
     @classmethod
-    def load_from_file(cls, file_path: Union[str, Path]) -> "RepositorySnapshot":
+    def load_from_file(cls, file_path: str | Path) -> "RepositorySnapshot":
         """
         Load a repository snapshot from a JSON file.
 

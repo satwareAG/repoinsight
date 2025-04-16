@@ -6,10 +6,12 @@ This module provides the main application entry point for the GUI.
 
 import logging
 import sys
+from pathlib import Path
 
 from PySide6.QtWidgets import QApplication, QMessageBox
 
 from repoinsight import __version__
+from repoinsight.config.models import RepoInsightConfig
 from repoinsight.gui.config_panel import ConfigPanel
 from repoinsight.gui.main_window import MainWindow
 from repoinsight.gui.preview_panel import MarkdownPreviewPanel
@@ -20,7 +22,7 @@ from repoinsight.gui.worker import DocumentationWorker
 logger = logging.getLogger(__name__)
 
 
-def run_app():
+def run_app() -> int:
     """
     Run the RepoInsight GUI application.
 
@@ -48,22 +50,22 @@ def run_app():
     main_window.right_layout.insertWidget(0, preview_panel)
 
     # Add worker management to main window
-    def _on_profile_selected(config):
+    def _on_profile_selected(config: 'RepoInsightConfig') -> None:
         """Handle profile selection."""
         main_window.current_config = config
 
-    def _on_config_changed(config):
+    def _on_config_changed(config: 'RepoInsightConfig') -> None:
         """Handle configuration changes."""
         main_window.current_config = config
         # In a real implementation, we might want to update the UI based on the new config
 
-    def _on_repository_opened(repo_path):
+    def _on_repository_opened(repo_path: Path) -> None:
         """Handle repository opening."""
         # In a real implementation, we might want to scan the repository
         # and update the UI based on the results
         main_window.status_label.setText(f"Repository: {repo_path}")
 
-    def _on_generation_started():
+    def _on_generation_started() -> None:
         """Handle generation start."""
         if not main_window.current_config:
             QMessageBox.warning(
@@ -87,13 +89,13 @@ def run_app():
         # Start worker
         worker.start()
 
-    def _update_progress(percentage, message):
+    def _update_progress(percentage: int, message: str) -> None:
         """Update progress bar and status message."""
         main_window.progress_bar.setValue(percentage)
         main_window.progress_bar.setVisible(True)
         main_window.status_label.setText(message)
 
-    def _on_generation_completed(markdown):
+    def _on_generation_completed(markdown: str) -> None:
         """Handle generation completion."""
         main_window.progress_bar.setVisible(False)
         main_window.status_label.setText("Documentation generation completed")
@@ -108,7 +110,7 @@ def run_app():
                 "Failed to generate documentation. Please check the logs for details.",
             )
 
-    def _on_generation_error(message):
+    def _on_generation_error(message: str) -> None:
         """Handle generation error."""
         main_window.progress_bar.setVisible(False)
         main_window.status_label.setText(f"Error: {message}")

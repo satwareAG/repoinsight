@@ -9,22 +9,26 @@
 
 ## Agent Specializations
 
-- **Tim Alesi (Web Development Expert)**: 
+- **Tim Alesi (Web Development Expert)**:
+
   - Optimize PySide6 GUI implementations
   - Enhance UI responsiveness and component design
   - Provide web-standard compliant HTML output for preview
-  
+
 - **Fenix Alesi (Database Expert)**:
+
   - Optimize caching strategies for repository data
   - Enhance query performance for large repositories
   - Design efficient data structures for code metadata
 
 - **John Alesi (Scientific Research Expert)**:
+
   - Improve mathematical formalization of code relationships
   - Optimize LLM prompt engineering for technical accuracy
   - Enhance algorithm performance for large-scale analysis
 
 - **Justus Alesi (Legal/Compliance Expert)**:
+
   - Verify GDPR compliance in scanned repositories
   - Identify license compatibility issues
   - Ensure proper attribution for open source components

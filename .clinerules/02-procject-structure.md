@@ -3,7 +3,8 @@
 - Root: ~/Projects/satware/repoinsight
 - Source code: /src/repoinsight
 - Directory structure:
-  ```
+  
+  ```txt
   satware-repoinsight/
   ├── pyproject.toml
   ├── poetry.lock
@@ -22,6 +23,7 @@
   ├── docs/                 # Documentation
   └── scripts/              # Helper scripts
   ```
+
 - Exclude directories: venv/, .git/, node_modules/
 - Cache folder: /.cache
 - Cache organization:

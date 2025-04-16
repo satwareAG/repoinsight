@@ -8,7 +8,7 @@ import logging
 from pathlib import Path
 
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QCloseEvent
 from PySide6.QtWidgets import (
     QFileDialog,
     QLabel,
@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
     generation_started = Signal()
     generation_completed = Signal(str)  # Markdown content
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         # Set window properties
@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
         self.current_config = self.config_manager.load_default_config()
         self.config_changed.emit(self.current_config)
 
-    def _create_actions(self):
+    def _create_actions(self) -> None:
         """Create actions for menus and toolbars."""
         # File actions
         self.open_action = QAction("Open Repository...", self)
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
         self.about_action.setStatusTip("Show about dialog")
         self.about_action.triggered.connect(self._show_about_dialog)
 
-    def _create_menu_bar(self):
+    def _create_menu_bar(self) -> None:
         """Create the menu bar."""
         menu_bar = self.menuBar()
 
@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
         help_menu = menu_bar.addMenu("Help")
         help_menu.addAction(self.about_action)
 
-    def _create_tool_bar(self):
+    def _create_tool_bar(self) -> None:
         """Create the toolbar."""
         toolbar = QToolBar("Main Toolbar")
         toolbar.setIconSize(QSize(16, 16))
@@ -135,7 +135,7 @@ class MainWindow(QMainWindow):
         toolbar.addSeparator()
         toolbar.addAction(self.run_action)
 
-    def _create_status_bar(self):
+    def _create_status_bar(self) -> None:
         """Create the status bar with progress reporting."""
         # Create status bar
         status_bar = QStatusBar()
@@ -157,7 +157,7 @@ class MainWindow(QMainWindow):
         self.settings_button.clicked.connect(self._show_settings)
         status_bar.addPermanentWidget(self.settings_button)
 
-    def _create_central_widget(self):
+    def _create_central_widget(self) -> None:
         """Create the central widget with 3-panel layout."""
         # Create main container
         central_widget = QWidget()
@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
         main_layout.setContentsMargins(0, 0, 0, 0)
 
         # Create main horizontal splitter
-        self.main_splitter = QSplitter(Qt.Horizontal)
+        self.main_splitter = QSplitter(Qt.Orientation.Horizontal)
         main_layout.addWidget(self.main_splitter)
 
         # Create left panel (Profiles)
@@ -209,7 +209,7 @@ class MainWindow(QMainWindow):
         # Set central widget
         self.setCentralWidget(central_widget)
 
-    def _open_repository(self):
+    def _open_repository(self) -> None:
         """Open a repository directory."""
         directory = QFileDialog.getExistingDirectory(self, "Select Repository Directory")
 
@@ -224,7 +224,7 @@ class MainWindow(QMainWindow):
             # Emit repository opened signal
             self.repository_opened.emit(Path(directory))
 
-    def _save_output(self):
+    def _save_output(self) -> None:
         """Save the generated output."""
         file_path, _ = QFileDialog.getSaveFileName(
             self, "Save Output", "", "Markdown Files (*.md);;All Files (*)"
@@ -235,7 +235,7 @@ class MainWindow(QMainWindow):
             # from the preview panel and save it
             self.status_label.setText(f"Output saved to: {file_path}")
 
-    def _run_documentation(self):
+    def _run_documentation(self) -> None:
         """Run the documentation generation process."""
         if not self.current_config:
             QMessageBox.warning(
@@ -265,7 +265,7 @@ class MainWindow(QMainWindow):
             "# Generated Documentation\n\nThis is a placeholder for the generated documentation."
         )
 
-    def _show_about_dialog(self):
+    def _show_about_dialog(self) -> None:
         """Show the about dialog."""
         QMessageBox.about(
             self,
@@ -275,10 +275,12 @@ class MainWindow(QMainWindow):
             "<p>© 2025 satware</p>",
         )
 
-    def _new_profile(self):
+    def _new_profile(self) -> None:
         """Create a new configuration profile."""
         # In a real implementation, we would show a dialog to get the profile name
-        name, ok = QMessageBox.getText(self, "New Profile", "Enter profile name:")
+        from PySide6.QtWidgets import QInputDialog
+
+        name, ok = QInputDialog.getText(self, "New Profile", "Enter profile name:")
 
         if ok and name:
             # Create a new profile
@@ -289,7 +291,7 @@ class MainWindow(QMainWindow):
             self.config_changed.emit(self.current_config)
             self.status_label.setText(f"Created new profile: {name}")
 
-    def _save_profile(self):
+    def _save_profile(self) -> None:
         """Save the current configuration profile."""
         if not self.current_config:
             QMessageBox.warning(self, "Profile Error", "No profile to save.")
@@ -299,11 +301,11 @@ class MainWindow(QMainWindow):
         self.config_manager.save_profile(self.current_config)
         self.status_label.setText(f"Saved profile: {self.current_config.name}")
 
-    def _show_settings(self):
+    def _show_settings(self) -> None:
         """Show the application settings dialog."""
         QMessageBox.information(self, "Settings", "Settings dialog would be shown here.")
 
-    def closeEvent(self, event):
+    def closeEvent(self, event: QCloseEvent) -> None:  # noqa: N802
         """Handle window close event."""
         # In a real implementation, we would check for unsaved changes
         event.accept()

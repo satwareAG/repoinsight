@@ -162,10 +162,7 @@ class SizeFilter(FileFilter):
         if self.min_size is not None and size < self.min_size:
             return False
 
-        if self.max_size is not None and size > self.max_size:
-            return False
-
-        return True
+        return not (self.max_size is not None and size > self.max_size)
 
 
 class ContentFilter(FileFilter):
