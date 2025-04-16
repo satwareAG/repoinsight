@@ -39,8 +39,8 @@ class LLMConfig(BaseModel):
     cache_enabled: bool = Field(default=True, description="Enable caching of LLM responses")
     system_prompt_template: str = Field(
         default=(
-            "Analyze the following {language} code and provide a concise description in markdown format. "
-            "Focus on the main purpose, key functionality, and important patterns or techniques used. "
+            "Analyze the following {language} code and provide a concise description as markdown."
+            "Focus on the main purpose, key functionality and important patterns or techniques used."
             "Keep the description under 5 sentences."
         ),
         description="System prompt template for the LLM",

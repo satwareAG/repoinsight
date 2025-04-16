@@ -307,5 +307,9 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event: QCloseEvent) -> None:  # noqa: N802
         """Handle window close event."""
+        # Clean up worker thread if running
+        if hasattr(self, "_worker") and self._worker and self._worker.is_running():
+            self._worker.stop()
+        
         # In a real implementation, we would check for unsaved changes
         event.accept()

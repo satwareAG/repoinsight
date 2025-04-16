@@ -44,7 +44,7 @@ class ProfilePanel(QWidget):
     profile_created = Signal(RepoInsightConfig)
     profile_deleted = Signal(str)  # Profile name
 
-    def __init__(self, config_manager: 'ConfigManager', parent: QWidget | None = None) -> None:
+    def __init__(self, config_manager: "ConfigManager", parent: QWidget | None = None) -> None:
         super().__init__(parent)
 
         self.config_manager = config_manager

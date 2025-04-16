@@ -301,7 +301,7 @@ class LLMClient:
             # Extract and return the generated description
             if "choices" in response and len(response["choices"]) > 0:
                 return response["choices"][0]["message"]["content"].strip()
-            
+
             logger.warning(f"Unexpected response format: {response}")
             return "Error: Unexpected response format from LLM API."
         except Exception as e:

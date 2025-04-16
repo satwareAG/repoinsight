@@ -8,6 +8,7 @@ from pathlib import Path
 # Use direct module imports for more reliable execution
 try:
     from ruff.__main__ import find_ruff_bin
+
     ruff_path = find_ruff_bin()
 except ImportError:
     print("Could not import ruff module. Make sure it's installed.")

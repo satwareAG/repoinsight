@@ -184,10 +184,10 @@ class ContentFilter(FileFilter):
         """
         self.max_size = max_size
         self.encoding = encoding
-        
+
         # Properly type the matcher function
         self.matcher: Callable[[str], bool]
-        
+
         if isinstance(pattern, str):
             regex = re.compile(pattern)
             self.matcher = lambda text: bool(regex.search(text))

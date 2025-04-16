@@ -263,7 +263,7 @@ class MarkdownComponents:
             # Try to get the language from the file extension
             language = FileTypeDetector.detect_language(path)
             return MarkdownComponents.code_block(content, language)
-        
+
         # Use a plain code block without syntax highlighting
         return MarkdownComponents.code_block(content)
 

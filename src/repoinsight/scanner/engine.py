@@ -257,14 +257,13 @@ class FileTypeDetector:
                 return cls.EXTENSION_TO_LANGUAGE[filename]
 
             # Some special cases
-            if filename == "dockerfile":
-                return "dockerfile"
-            elif filename == "makefile":
-                return "makefile"
-            elif filename == "jenkinsfile":
-                return "jenkinsfile"
+            special_cases = {
+                "dockerfile": "dockerfile",
+                "makefile": "makefile",
+                "jenkinsfile": "jenkinsfile",
+            }
 
-            return "text"  # Default to plain text
+            return special_cases.get(filename, "text")
 
         # Look up the language by extension
         return cls.EXTENSION_TO_LANGUAGE.get(extension, "unknown")

@@ -36,6 +36,8 @@ def run_app() -> int:
 
     # Create main window
     main_window = MainWindow()
+    # Add worker attribute to store reference
+    main_window._worker = None
 
     # Create and set up profile panel
     profile_panel = ProfilePanel(main_window.config_manager)
@@ -50,11 +52,11 @@ def run_app() -> int:
     main_window.right_layout.insertWidget(0, preview_panel)
 
     # Add worker management to main window
-    def _on_profile_selected(config: 'RepoInsightConfig') -> None:
+    def _on_profile_selected(config: "RepoInsightConfig") -> None:
         """Handle profile selection."""
         main_window.current_config = config
 
-    def _on_config_changed(config: 'RepoInsightConfig') -> None:
+    def _on_config_changed(config: "RepoInsightConfig") -> None:
         """Handle configuration changes."""
         main_window.current_config = config
         # In a real implementation, we might want to update the UI based on the new config
@@ -75,19 +77,23 @@ def run_app() -> int:
             )
             return
 
-        # Initialize worker
-        worker = DocumentationWorker(main_window.current_config)
+        # Stop any existing worker
+        if main_window._worker and main_window._worker.is_running():
+            main_window._worker.stop()
+
+        # Initialize worker and store reference in main_window
+        main_window._worker = DocumentationWorker(main_window.current_config)
 
         # Connect worker signals
-        worker.started.connect(
+        main_window._worker.started.connect(
             lambda: main_window.status_label.setText("Documentation generation started...")
         )
-        worker.progress.connect(lambda p, m: main_window._update_progress(p, m))
-        worker.finished.connect(lambda markdown: main_window._on_generation_completed(markdown))
-        worker.error.connect(lambda msg: main_window._on_generation_error(msg))
+        main_window._worker.progress.connect(lambda p, m: main_window._update_progress(p, m))
+        main_window._worker.finished.connect(lambda markdown: main_window._on_generation_completed(markdown))
+        main_window._worker.error.connect(lambda msg: main_window._on_generation_error(msg))
 
         # Start worker
-        worker.start()
+        main_window._worker.start()
 
     def _update_progress(percentage: int, message: str) -> None:
         """Update progress bar and status message."""

@@ -45,9 +45,9 @@ class GitRepository:
     def is_git_repository(self) -> bool:
         """Check if the path is a valid Git repository."""
         try:
-        # Access the repo property to initialize if needed
-        # Using repo property triggers initialization
-        return self.repo is not None
+            # Access the repo property to initialize if needed
+            _ = self.repo
+            return self._repo is not None
         except (git.InvalidGitRepositoryError, git.NoSuchPathError):
             return False
 

@@ -381,7 +381,7 @@ class ConfigPanel(QWidget):
 
         if not directory:
             return
-            
+
         # Convert to relative path if possible
         try:
             root_path = Path(self.root_path_edit.text())
@@ -413,7 +413,7 @@ class ConfigPanel(QWidget):
 
         if not directory:
             return
-            
+
         # Convert to relative path if possible
         try:
             root_path = Path(self.root_path_edit.text())
@@ -426,8 +426,7 @@ class ConfigPanel(QWidget):
 
         # Add to list if not already present
         existing_items = [
-            self.exclude_dirs_list.item(i).text()
-            for i in range(self.exclude_dirs_list.count())
+            self.exclude_dirs_list.item(i).text() for i in range(self.exclude_dirs_list.count())
         ]
         if directory not in existing_items:
             self.exclude_dirs_list.addItem(directory)

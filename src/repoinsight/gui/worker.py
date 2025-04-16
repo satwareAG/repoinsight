@@ -35,6 +35,7 @@ class AsyncWorker(QObject):
         self._running = False
         self._loop = None
         self._thread = None
+        self._task = None
 
     def is_running(self) -> bool:
         """Check if the worker is currently running."""
@@ -63,6 +64,11 @@ class AsyncWorker(QObject):
 
         self._running = False
 
+        # Cancel the running task if it exists
+        if self._loop and self._task and not self._task.done():
+            logger.debug("Cancelling running asyncio task")
+            self._loop.call_soon_threadsafe(self._task.cancel)
+
         # Clean up thread
         if self._thread:
             self._thread.quit()
@@ -80,18 +86,26 @@ class AsyncWorker(QObject):
             # Emit started signal
             self.started.emit()
 
-            # Run the task
-            result = self._loop.run_until_complete(self._run_task())
+            # Create and run the task
+            self._task = self._loop.create_task(self._run_task())
+            result = self._loop.run_until_complete(self._task)
 
             # Emit finished signal
             self.finished.emit(result)
+        except asyncio.CancelledError:
+            logger.info("Worker task was cancelled")
+            self.error.emit("Operation was cancelled")
         except Exception as e:
             logger.exception("Error in worker thread")
             self.error.emit(str(e))
         finally:
             # Clean up
             self._running = False
-            self._loop.close()
+            self._task = None
+            if self._loop and self._loop.is_running():
+                self._loop.stop()
+            if self._loop and not self._loop.is_closed():
+                self._loop.close()
             self._loop = None
 
     async def _run_task(self) -> Never:

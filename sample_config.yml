@@ -33,7 +33,7 @@ llm:
   enabled: true
   provider: "cortex"
   api_base_url: "http://localhost:8000/v1"
-  model: "llama3"
+  model: "cogito-v1:3b"
   temperature: 0.3
   max_tokens: 500
   timeout: 30

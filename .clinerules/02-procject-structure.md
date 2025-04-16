@@ -3,7 +3,7 @@
 - Root: ~/Projects/satware/repoinsight
 - Source code: /src/repoinsight
 - Directory structure:
-  
+
   ```txt
   satware-repoinsight/
   ├── pyproject.toml
