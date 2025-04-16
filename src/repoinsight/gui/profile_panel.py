@@ -1,3 +1,5 @@
+
+
 """
 Profile management panel for RepoInsight GUI.
 
@@ -6,10 +8,12 @@ This module provides components for managing configuration profiles.
 
 import logging
 from pathlib import Path
+from typing import Optional, List, Dict, Union
 
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 from PySide6.QtWidgets import (
+    QAbstractItemView,
     QHBoxLayout,
     QInputDialog,
     QLabel,
@@ -39,11 +43,11 @@ class ProfilePanel(QWidget):
     profile_created = Signal(RepoInsightConfig)
     profile_deleted = Signal(str)  # Profile name
 
-    def __init__(self, config_manager, parent=None):
+    def __init__(self, config_manager, parent=None) -> None:
         super().__init__(parent)
 
         self.config_manager = config_manager
-        self.current_profile_name = None
+        self.current_profile_name: Optional[str] = None
 
         # Initialize UI
         self._init_ui()
@@ -51,7 +55,7 @@ class ProfilePanel(QWidget):
         # Load profiles
         self._refresh_profiles()
 
-    def _init_ui(self):
+    def _init_ui(self) -> None:
         """Initialize the UI components."""
         # Create main layout
         main_layout = QVBoxLayout(self)
@@ -65,10 +69,10 @@ class ProfilePanel(QWidget):
         self.profile_model = QStandardItemModel(self)
         self.profile_list = QListView()
         self.profile_list.setModel(self.profile_model)
-        self.profile_list.setEditTriggers(QListView.NoEditTriggers)
-        self.profile_list.setSelectionMode(QListView.SingleSelection)
+        self.profile_list.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.profile_list.setSelectionMode(QAbstractItemView.SingleSelection)
         self.profile_list.clicked.connect(self._on_profile_clicked)
-        self.profile_list.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.profile_list.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.profile_list.customContextMenuRequested.connect(self._show_context_menu)
         main_layout.addWidget(self.profile_list)
 
@@ -95,7 +99,7 @@ class ProfilePanel(QWidget):
 
         main_layout.addLayout(button_layout)
 
-    def _refresh_profiles(self):
+    def _refresh_profiles(self) -> None:
         """Refresh the list of available profiles."""
         self.profile_model.clear()
 
@@ -104,14 +108,14 @@ class ProfilePanel(QWidget):
 
         # Add default profile
         default_item = QStandardItem("Default")
-        default_item.setData("Default", Qt.UserRole)
+        default_item.setData("Default", Qt.ItemDataRole.UserRole)
         self.profile_model.appendRow(default_item)
 
         # Add other profiles
         for profile_name in profiles:
             if profile_name != "Default":  # Skip default if it's already in the list
                 item = QStandardItem(profile_name)
-                item.setData(profile_name, Qt.UserRole)
+                item.setData(profile_name, Qt.ItemDataRole.UserRole)
                 self.profile_model.appendRow(item)
 
         # Select current profile if it exists
@@ -122,21 +126,21 @@ class ProfilePanel(QWidget):
             self.profile_list.setCurrentIndex(self.profile_model.index(0, 0))
             self._on_profile_clicked(self.profile_model.index(0, 0))
 
-    def _select_profile_by_name(self, profile_name):
+    def _select_profile_by_name(self, profile_name) -> bool:
         """Select a profile by name."""
         for row in range(self.profile_model.rowCount()):
             item = self.profile_model.item(row)
-            if item.data(Qt.UserRole) == profile_name:
+            if item.data(Qt.ItemDataRole.UserRole) == profile_name:
                 self.profile_list.setCurrentIndex(self.profile_model.index(row, 0))
                 return True
         return False
 
-    def _on_profile_clicked(self, index):
+    def _on_profile_clicked(self, index) -> None:
         """Handle profile selection."""
         if not index.isValid():
             return
 
-        profile_name = index.data(Qt.UserRole)
+        profile_name = index.data(Qt.ItemDataRole.UserRole)
         if not profile_name:
             profile_name = index.data()
 
@@ -157,7 +161,7 @@ class ProfilePanel(QWidget):
                 self, "Profile Error", f"Error loading profile '{profile_name}': {str(e)}"
             )
 
-    def _show_context_menu(self, position):
+    def _show_context_menu(self, position) -> None:
         """Show context menu for the profile list."""
         index = self.profile_list.indexAt(position)
         if not index.isValid():
@@ -180,7 +184,7 @@ class ProfilePanel(QWidget):
         elif action == delete_action:
             self._delete_profile(index)
 
-    def _create_profile(self):
+    def _create_profile(self) -> None:
         """Create a new profile."""
         name, ok = QInputDialog.getText(self, "New Profile", "Enter profile name:")
 
@@ -210,7 +214,7 @@ class ProfilePanel(QWidget):
             # Emit signal
             self.profile_created.emit(config)
 
-    def _rename_profile(self, index=None):
+    def _rename_profile(self, index=None) -> None:
         """Rename the selected profile."""
         if index is None:
             index = self.profile_list.currentIndex()
@@ -218,7 +222,7 @@ class ProfilePanel(QWidget):
         if not index.isValid():
             return
 
-        profile_name = index.data(Qt.UserRole)
+        profile_name = index.data(Qt.ItemDataRole.UserRole)
         if not profile_name:
             profile_name = index.data()
 
@@ -264,7 +268,7 @@ class ProfilePanel(QWidget):
                 logger.error(f"Error renaming profile {profile_name} to {new_name}: {e}")
                 QMessageBox.warning(self, "Profile Error", f"Error renaming profile: {str(e)}")
 
-    def _duplicate_profile(self, index=None):
+    def _duplicate_profile(self, index=None) -> None:
         """Duplicate the selected profile."""
         if index is None:
             index = self.profile_list.currentIndex()
@@ -272,7 +276,7 @@ class ProfilePanel(QWidget):
         if not index.isValid():
             return
 
-        profile_name = index.data(Qt.UserRole)
+        profile_name = index.data(Qt.ItemDataRole.UserRole)
         if not profile_name:
             profile_name = index.data()
 
@@ -308,7 +312,7 @@ class ProfilePanel(QWidget):
             logger.error(f"Error duplicating profile {profile_name}: {e}")
             QMessageBox.warning(self, "Profile Error", f"Error duplicating profile: {str(e)}")
 
-    def _delete_profile(self, index=None):
+    def _delete_profile(self, index=None) -> None:
         """Delete the selected profile."""
         if index is None:
             index = self.profile_list.currentIndex()
@@ -316,7 +320,7 @@ class ProfilePanel(QWidget):
         if not index.isValid():
             return
 
-        profile_name = index.data(Qt.UserRole)
+        profile_name = index.data(Qt.ItemDataRole.UserRole)
         if not profile_name:
             profile_name = index.data()
 
@@ -330,11 +334,11 @@ class ProfilePanel(QWidget):
             self,
             "Delete Profile",
             f"Are you sure you want to delete the profile '{profile_name}'?",
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No,
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
         )
 
-        if reply == QMessageBox.Yes:
+        if reply == QMessageBox.StandardButton.Yes:
             try:
                 # Delete the profile
                 success = self.config_manager.delete_profile(profile_name)

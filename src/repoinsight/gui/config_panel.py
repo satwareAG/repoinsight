@@ -16,6 +16,7 @@ from PySide6.QtWidgets import (
     QFormLayout,
     QGroupBox,
     QHBoxLayout,
+    QInputDialog,
     QLabel,
     QLineEdit,
     QListWidget,
@@ -44,7 +45,7 @@ class ConfigPanel(QWidget):
     # Signals
     config_changed = Signal(RepoInsightConfig)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
         self.config = None
@@ -52,7 +53,7 @@ class ConfigPanel(QWidget):
         # Initialize UI
         self._init_ui()
 
-    def _init_ui(self):
+    def _init_ui(self) -> None:
         """Initialize the UI components."""
         # Create main layout with scroll area
         main_layout = QVBoxLayout(self)
@@ -61,7 +62,7 @@ class ConfigPanel(QWidget):
         # Create scroll area for configuration
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
-        scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         main_layout.addWidget(scroll_area)
 
         # Create container widget for scroll area
@@ -89,7 +90,7 @@ class ConfigPanel(QWidget):
         save_button.clicked.connect(self._apply_changes)
         scroll_layout.addWidget(save_button)
 
-    def _create_basic_tab(self):
+    def _create_basic_tab(self) -> None:
         """Create the basic settings tab."""
         basic_tab = QWidget()
         layout = QVBoxLayout(basic_tab)
@@ -143,7 +144,7 @@ class ConfigPanel(QWidget):
 
         self.tab_widget.addTab(basic_tab, "Basic")
 
-    def _create_files_tab(self):
+    def _create_files_tab(self) -> None:
         """Create the file patterns tab."""
         files_tab = QWidget()
         layout = QVBoxLayout(files_tab)
@@ -226,7 +227,7 @@ class ConfigPanel(QWidget):
 
         self.tab_widget.addTab(files_tab, "Files")
 
-    def _create_llm_tab(self):
+    def _create_llm_tab(self) -> None:
         """Create the LLM settings tab."""
         llm_tab = QWidget()
         layout = QVBoxLayout(llm_tab)
@@ -252,7 +253,7 @@ class ConfigPanel(QWidget):
         # API Key field
         self.llm_api_key_edit = QLineEdit()
         self.llm_api_key_edit.setPlaceholderText("API key (optional)")
-        self.llm_api_key_edit.setEchoMode(QLineEdit.Password)
+        self.llm_api_key_edit.setEchoMode(QLineEdit.EchoMode.Password)
         llm_layout.addRow("API Key:", self.llm_api_key_edit)
 
         # Model field
@@ -297,7 +298,7 @@ class ConfigPanel(QWidget):
 
         self.tab_widget.addTab(llm_tab, "LLM")
 
-    def _create_output_tab(self):
+    def _create_output_tab(self) -> None:
         """Create the output settings tab."""
         output_tab = QWidget()
         layout = QVBoxLayout(output_tab)
@@ -355,13 +356,13 @@ class ConfigPanel(QWidget):
 
         self.tab_widget.addTab(output_tab, "Output")
 
-    def _browse_root_path(self):
+    def _browse_root_path(self) -> None:
         """Browse for repository root path."""
         directory = QFileDialog.getExistingDirectory(self, "Select Repository Directory")
         if directory:
             self.root_path_edit.setText(directory)
 
-    def _browse_output_path(self):
+    def _browse_output_path(self) -> None:
         """Browse for output file path."""
         file_path, _ = QFileDialog.getSaveFileName(
             self, "Save Output", "", "Markdown Files (*.md);;All Files (*)"
@@ -369,7 +370,7 @@ class ConfigPanel(QWidget):
         if file_path:
             self.output_path_edit.setText(file_path)
 
-    def _add_scan_dir(self):
+    def _add_scan_dir(self) -> None:
         """Add a scan directory."""
         if not self.config:
             return
@@ -391,17 +392,17 @@ class ConfigPanel(QWidget):
 
             # Add to list if not already present
             if directory not in [
-                self.scan_dirs_list.item(i).text() for i in range(self.scan_dirs_list.rowCount())
+                self.scan_dirs_list.item(i).text() for i in range(self.scan_dirs_list.count())
             ]:
                 self.scan_dirs_list.addItem(directory)
 
-    def _remove_scan_dir(self):
+    def _remove_scan_dir(self) -> None:
         """Remove a scan directory."""
         selected_items = self.scan_dirs_list.selectedItems()
         for item in selected_items:
             self.scan_dirs_list.takeItem(self.scan_dirs_list.row(item))
 
-    def _add_exclude_dir(self):
+    def _add_exclude_dir(self) -> None:
         """Add an exclude directory."""
         directory = QFileDialog.getExistingDirectory(
             self, "Select Directory to Exclude", str(Path(self.root_path_edit.text()))
@@ -421,17 +422,17 @@ class ConfigPanel(QWidget):
             # Add to list if not already present
             if directory not in [
                 self.exclude_dirs_list.item(i).text()
-                for i in range(self.exclude_dirs_list.rowCount())
+                for i in range(self.exclude_dirs_list.count())
             ]:
                 self.exclude_dirs_list.addItem(directory)
 
-    def _remove_exclude_dir(self):
+    def _remove_exclude_dir(self) -> None:
         """Remove an exclude directory."""
         selected_items = self.exclude_dirs_list.selectedItems()
         for item in selected_items:
             self.exclude_dirs_list.takeItem(self.exclude_dirs_list.row(item))
 
-    def _add_include_pattern(self):
+    def _add_include_pattern(self) -> None:
         """Add an include pattern."""
         # Simple implementation using an input dialog
         pattern, ok = QInputDialog.getText(
@@ -442,17 +443,17 @@ class ConfigPanel(QWidget):
             # Add to list if not already present
             if pattern not in [
                 self.include_patterns_list.item(i).text()
-                for i in range(self.include_patterns_list.rowCount())
+                for i in range(self.include_patterns_list.count())
             ]:
                 self.include_patterns_list.addItem(pattern)
 
-    def _remove_include_pattern(self):
+    def _remove_include_pattern(self) -> None:
         """Remove an include pattern."""
         selected_items = self.include_patterns_list.selectedItems()
         for item in selected_items:
             self.include_patterns_list.takeItem(self.include_patterns_list.row(item))
 
-    def _add_exclude_pattern(self):
+    def _add_exclude_pattern(self) -> None:
         """Add an exclude pattern."""
         # Simple implementation using an input dialog
         pattern, ok = QInputDialog.getText(
@@ -463,17 +464,17 @@ class ConfigPanel(QWidget):
             # Add to list if not already present
             if pattern not in [
                 self.exclude_patterns_list.item(i).text()
-                for i in range(self.exclude_patterns_list.rowCount())
+                for i in range(self.exclude_patterns_list.count())
             ]:
                 self.exclude_patterns_list.addItem(pattern)
 
-    def _remove_exclude_pattern(self):
+    def _remove_exclude_pattern(self) -> None:
         """Remove an exclude pattern."""
         selected_items = self.exclude_patterns_list.selectedItems()
         for item in selected_items:
             self.exclude_patterns_list.takeItem(self.exclude_patterns_list.row(item))
 
-    def set_config(self, config):
+    def set_config(self, config) -> None:
         """Set the configuration to edit."""
         self.config = config
 
@@ -481,7 +482,7 @@ class ConfigPanel(QWidget):
             # Update UI with config values
             self._update_ui_from_config()
 
-    def _update_ui_from_config(self):
+    def _update_ui_from_config(self) -> None:
         """Update UI elements with values from the current config."""
         if not self.config:
             return
@@ -531,7 +532,7 @@ class ConfigPanel(QWidget):
         self.max_concurrent_tasks_spin.setValue(self.config.processing.max_concurrent_tasks)
         self.chunk_size_spin.setValue(self.config.processing.chunk_size)
 
-    def _apply_changes(self):
+    def _apply_changes(self) -> None:
         """Apply changes to the configuration."""
         if not self.config:
             return
