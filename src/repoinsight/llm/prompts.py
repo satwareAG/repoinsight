@@ -5,14 +5,12 @@ This module provides specialized system prompts for various programming language
 and file types to improve the quality of generated descriptions.
 """
 
-from typing import Dict, Optional
-
 
 class PromptTemplates:
     """
     Collection of system prompt templates for different programming languages and file types.
     """
-    
+
     # Default prompt template for any language
     DEFAULT_TEMPLATE = (
         "Analyze the following {language} code and provide a concise description "
@@ -20,7 +18,7 @@ class PromptTemplates:
         "important patterns or techniques used. Keep the description under 5 sentences. "
         "Use technical but clear language appropriate for a software documentation context."
     )
-    
+
     # Specialized templates for specific languages
     LANGUAGE_TEMPLATES = {
         # Python-specific prompt
@@ -36,7 +34,6 @@ class PromptTemplates:
             "appropriate for Python developers. If appropriate, mention Python-specific "
             "features like decorators, context managers, generators, or async functionality."
         ),
-        
         # JavaScript/TypeScript prompt
         "javascript": (
             "Analyze the following JavaScript code and provide a concise description "
@@ -50,7 +47,6 @@ class PromptTemplates:
             "appropriate for JavaScript developers. If appropriate, mention JavaScript-specific "
             "features like closures, promises, async/await, or functional patterns."
         ),
-        
         "typescript": (
             "Analyze the following TypeScript code and provide a concise description "
             "in markdown format. Focus on:\n"
@@ -63,7 +59,6 @@ class PromptTemplates:
             "appropriate for TypeScript developers. If appropriate, mention TypeScript-specific "
             "features like generics, type guards, utility types, or advanced type constructs."
         ),
-        
         # HTML/CSS prompt
         "html": (
             "Analyze the following HTML code and provide a concise description "
@@ -76,7 +71,6 @@ class PromptTemplates:
             "Keep the description under 5 sentences. Use technical but clear language "
             "appropriate for web developers."
         ),
-        
         "css": (
             "Analyze the following CSS code and provide a concise description "
             "in markdown format. Focus on:\n"
@@ -88,7 +82,6 @@ class PromptTemplates:
             "Keep the description under 5 sentences. Use technical but clear language "
             "appropriate for web developers."
         ),
-        
         # Configuration files prompt
         "json": (
             "Analyze the following JSON configuration file and provide a concise description "
@@ -101,7 +94,6 @@ class PromptTemplates:
             "Keep the description under 5 sentences. Use technical but clear language "
             "that explains the purpose and key aspects of this configuration."
         ),
-        
         "yaml": (
             "Analyze the following YAML configuration file and provide a concise description "
             "in markdown format. Focus on:\n"
@@ -113,7 +105,6 @@ class PromptTemplates:
             "Keep the description under 5 sentences. Use technical but clear language "
             "that explains the purpose and key aspects of this configuration."
         ),
-        
         "toml": (
             "Analyze the following TOML configuration file and provide a concise description "
             "in markdown format. Focus on:\n"
@@ -125,7 +116,6 @@ class PromptTemplates:
             "Keep the description under 5 sentences. Use technical but clear language "
             "that explains the purpose and key aspects of this configuration."
         ),
-        
         # Documentation files prompt
         "markdown": (
             "Analyze the following Markdown document and provide a concise description "
@@ -138,7 +128,6 @@ class PromptTemplates:
             "Keep the description under 5 sentences. Provide a clear summary that captures "
             "the essence and purpose of this documentation."
         ),
-        
         # Shell scripts prompt
         "bash": (
             "Analyze the following shell script and provide a concise description "
@@ -152,25 +141,25 @@ class PromptTemplates:
             "appropriate for system administrators or DevOps engineers."
         ),
     }
-    
+
     @classmethod
     def get_template(cls, language: str) -> str:
         """
         Get a prompt template for a specific language.
-        
+
         Args:
             language: The programming language or file type
-            
+
         Returns:
             A prompt template string with a {language} placeholder
         """
         # Normalize the language name
         norm_language = language.lower()
-        
+
         # Check for direct language match
         if norm_language in cls.LANGUAGE_TEMPLATES:
             return cls.LANGUAGE_TEMPLATES[norm_language]
-            
+
         # Check for language aliases
         if norm_language in ["js", "jsx"]:
             return cls.LANGUAGE_TEMPLATES["javascript"]
@@ -186,7 +175,7 @@ class PromptTemplates:
             return cls.LANGUAGE_TEMPLATES["bash"]
         elif norm_language in ["md"]:
             return cls.LANGUAGE_TEMPLATES["markdown"]
-            
+
         # Fallback to default template
         return cls.DEFAULT_TEMPLATE
 
@@ -194,10 +183,10 @@ class PromptTemplates:
 def get_system_prompt(language: str) -> str:
     """
     Get a formatted system prompt for a specific language.
-    
+
     Args:
         language: The programming language or file type
-        
+
     Returns:
         A formatted system prompt
     """

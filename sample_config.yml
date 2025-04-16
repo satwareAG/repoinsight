@@ -1,7 +1,7 @@
 # satware® RepoInsight Configuration
 
 name: "RepoInsight Project"
-root_path: "."  # Current directory
+root_path: "." # Current directory
 output_path: "docs/repository_documentation.md"
 
 # Directories to scan and exclude

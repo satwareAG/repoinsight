@@ -14,34 +14,34 @@ from repoinsight.config.yaml import load_config
 from repoinsight.core.engine import ProcessingEngine
 
 
-async def main():
+async def main() -> int:
     """Run RepoInsight programmatically."""
     # Set up logging
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
-    
+
     try:
         # Load configuration from sample file
         config_path = Path("sample_config.yml")
         if not config_path.exists():
             print(f"Error: Configuration file not found: {config_path}")
             return 1
-            
+
         config = load_config(config_path)
         print(f"Loaded configuration: {config.name}")
-        
+
         # Create processing engine
         engine = ProcessingEngine(config)
-        
+
         # Process repository and generate markdown
         print("Processing repository...")
         snapshot, markdown = await engine.process_and_generate()
-        
+
         # Print some stats
         print(f"Processed {len(snapshot.files)} files")
-        
+
         # Save output if path is specified
         if config.output_path:
             output_path = config.get_absolute_output_path()
@@ -55,7 +55,7 @@ async def main():
             print("-" * 80)
             print(markdown[:500] + "...")
             print("-" * 80)
-            
+
         return 0
     except Exception as e:
         print(f"Error: {e}")

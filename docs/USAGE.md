@@ -27,9 +27,13 @@ repoinsight run --repository /path/to/repo --output /path/to/output.md
 ```bash
 # Launch the GUI
 repoinsight --gui
+
+# The --gui flag takes precedence over any other command
+# and will always launch the GUI regardless of other arguments
 ```
 
 From the GUI, you can:
+
 1. Open a repository
 2. Configure settings
 3. Run the documentation generation
@@ -44,6 +48,7 @@ repoinsight init /path/to/repo
 ```
 
 This will create a `.repoinsight.yml` file that you can edit to customize:
+
 - File inclusion/exclusion patterns
 - LLM integration settings
 - Output formatting options
@@ -101,15 +106,15 @@ from repoinsight.core.engine import ProcessingEngine
 async def generate_docs():
     # Load configuration
     config = load_config("sample_config.yml")
-    
+
     # Create engine
     engine = ProcessingEngine(config)
-    
+
     # Process repository and generate markdown
     snapshot, markdown = await engine.process_and_generate()
-    
+
     print(f"Generated documentation with {len(snapshot.files)} files")
-    
+
     # Save to file if needed
     if config.output_path:
         print(f"Saved to {config.output_path}")

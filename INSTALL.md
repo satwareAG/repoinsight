@@ -14,28 +14,33 @@ This guide provides detailed instructions for installing and setting up RepoInsi
 
 ### 1. Install Poetry
 
-#### Linux/macOS:
+#### Linux/macOS
+
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-#### Windows:
+#### Windows
+
 ```powershell
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 ```
 
 ### 2. Clone the Repository
+
 ```bash
 git clone https://github.com/satware/repoinsight.git
 cd repoinsight
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 poetry install
 ```
 
 ### 4. Run RepoInsight
+
 ```bash
 # CLI mode
 poetry run repoinsight
@@ -47,6 +52,7 @@ poetry run repoinsight --gui
 ## Option 2: Installation with pip
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/satware/repoinsight.git
 cd repoinsight
@@ -54,29 +60,34 @@ cd repoinsight
 
 ### 2. Create and Activate Virtual Environment (Optional but Recommended)
 
-#### Linux/macOS:
+#### Linux/macOS
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-#### Windows:
+#### Windows
+
 ```powershell
 python -m venv venv
 .\venv\Scripts\activate
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Install RepoInsight in Development Mode
+
 ```bash
 pip install -e .
 ```
 
 ### 5. Run RepoInsight
+
 ```bash
 # CLI mode
 python -m repoinsight
@@ -91,9 +102,10 @@ RepoInsight can use Cortex or other OpenAI-compatible LLM servers to generate de
 
 ### Running Cortex Locally
 
-1. Install Cortex by following the instructions at https://cortex.so/docs
+1. Install Cortex by following the instructions at <https://cortex.so/docs>
 
 2. Start the Cortex server:
+
 ```bash
 cortex run llama3
 ```
@@ -110,17 +122,20 @@ cortex run llama3
 
 If you encounter issues installing PySide6, you may need to install additional system dependencies:
 
-#### Ubuntu/Debian:
+#### Ubuntu/Debian
+
 ```bash
 sudo apt-get install libxcb-xinerama0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xkb1 libxkbcommon-x11-0
 ```
 
-#### Fedora/RHEL:
+#### Fedora/RHEL
+
 ```bash
 sudo dnf install libxcb libxkbcommon-x11
 ```
 
-#### macOS:
+#### macOS
+
 ```bash
 brew install cmake
 ```

@@ -1,0 +1,44 @@
+name: repoinsight
+root_path: /home/mw/Projects/satware/repoinsight
+output_path: null
+scan_directories:
+- .
+exclude_directories:
+- venv
+- node_modules
+- .git
+file_patterns:
+  include:
+  - '*.py'
+  - '*.js'
+  - '*.html'
+  - '*.css'
+  - '*.md'
+  exclude:
+  - '*__pycache__*'
+  - '*.git*'
+  - '*.pyc'
+  - node_modules/*
+llm:
+  enabled: true
+  provider: cortex
+  api_base_url: http://localhost:8000/v1
+  api_key: null
+  model: llama3
+  temperature: 0.3
+  max_tokens: 500
+  timeout: 30
+  cache_enabled: true
+  system_prompt_template: Analyze the following {language} code and provide a concise
+    description in markdown format. Focus on the main purpose, key functionality,
+    and important patterns or techniques used. Keep the description under 5 sentences.
+processing:
+  max_concurrent_tasks: 4
+  chunk_size: 8192
+output:
+  include_toc: true
+  include_metadata: true
+  include_file_stats: true
+  include_commit_info: true
+  syntax_highlighting: true
+cache_path: .repoinsight_cache
