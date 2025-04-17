@@ -1,0 +1,45 @@
+name: repoinsight-deepseek-r1-1-5b
+root_path: /home/mw/Projects/satware/repoinsight
+output_path: /home/mw/Projects/satware/repoinsight/examples/repoinsight-deepseek-r1-1-5b.md
+scan_directories:
+  - .
+exclude_directories:
+  - venv
+  - node_modules
+  - .git
+  - examples
+  - __pycache__
+  - .repoinsight_cache
+file_patterns:
+  include:
+    - "*.py"
+    - "*.js"
+    - "*.html"
+    - "*.css"
+    - "*.md"
+  exclude:
+    - "*__pycache__*"
+    - "*.git*"
+    - "*.pyc"
+    - node_modules/*
+llm:
+  enabled: true
+  provider: cortex
+  api_base_url: http://localhost:8000/v1
+  api_key: null
+  model: "deepseek-r1:1.5b"
+  temperature: 0.3
+  max_tokens: 400
+  timeout: 60
+  cache_enabled: true
+  system_prompt_template: "Analyze the following {language} code. Provide one simple, clear sentence summarizing its main purpose. **Do not** output your reasoning. **Do not** output your thinking. Do not** breakdown code. **Do not** implement code. **Do not** elaborate beyond that single sentence. **Important:** Output one plain text sentence only! If you want to output more than one sentence immidiately STOP. Example: 'The code defines a CLI package that serves as an entry point for the RepoInsight application.'"
+processing:
+  max_concurrent_tasks: 4
+  chunk_size: 8192
+output:
+  include_toc: true
+  include_metadata: true
+  include_file_stats: true
+  include_commit_info: true
+  syntax_highlighting: true
+cache_path: /home/mw/Projects/satware/repoinsight/.repoinsight_cache/deepseek-r1-1-5b

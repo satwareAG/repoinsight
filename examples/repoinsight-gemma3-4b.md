@@ -1,4 +1,4 @@
-# RepoInsight Project Documentation
+# repoinsight-gemma3-4b Documentation
 
 ## Repository Information
 
@@ -8,70 +8,1074 @@
 | ------------------ | ------------------------------------- |
 | **Path**           | /home/mw/Projects/satware/repoinsight |
 | **Git Repository** | Yes                                   |
-| **Generated**      | 2025-04-16T20:49:36.440455            |
+| **Generated**      | 2025-04-17T15:23:12.346194            |
 
 ### Git Information
 
-| Property           | Value                                    |
-| ------------------ | ---------------------------------------- |
-| **Branch**         | main                                     |
-| **Commit**         | 1ee7be0afe9c4f9b1af999d780d4b58a7c5b890a |
-| **Commit Message** | Fix mypy type errors in multiple files   |
-| **Commit Date**    | 2025-04-16T18:53:29                      |
-| **Author**         | Michael Wegener <mw@satware.com>         |
+| Property           | Value                                            |
+| ------------------ | ------------------------------------------------ |
+| **Branch**         | main                                             |
+| **Commit**         | e3bd926ea7818b0cb2927cdf670c33f7969d41f4         |
+| **Commit Message** | Update LLM configuration and documentation paths |
+
+Changed the LLM model and API base URL in `.repoinsight.yml` for compatibility with the new provider. Adjusted documentation structure to reflect updates in codebase organization and metadata details. |
+| **Commit Date** | 2025-04-16T21:41:33 |
+| **Author** | Michael Wegener <mw@satware.com> |
+
+### Remote Repositories
+
+| Property     | Value                                        |
+| ------------ | -------------------------------------------- |
+| **Remote 1** | https://github.com/satwareAG/repoinsight.git |
 
 ## Table of Contents
 
-                - [/home/mw/Projects/satware/repoinsight/src/repoinsight/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight___init___py_0)
-                - [/home/mw/Projects/satware/repoinsight/src/repoinsight/__main__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight___main___py_1)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/cli/commands.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli_commands_py_2)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/cli/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli___init___py_3)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/scanner/engine.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_engine_py_4)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/scanner/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner___init___py_5)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/scanner/filters.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_filters_py_6)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/core/engine.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_engine_py_7)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/core/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_core___init___py_8)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/core/models.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_models_py_9)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/markdown/generator.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_generator_py_10)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/markdown/components.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_components_py_11)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/markdown/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown___init___py_12)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/config/yaml.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_yaml_py_13)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/config/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_config___init___py_14)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/config/models.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_models_py_15)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/config_panel.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_config_panel_py_16)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/worker.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_worker_py_17)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/preview_panel.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_preview_panel_py_18)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/profile_panel.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_profile_panel_py_19)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui___init___py_20)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/app.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_app_py_21)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/gui/main_window.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_main_window_py_22)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/llm/client.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_client_py_23)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/llm/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm___init___py_24)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/llm/prompts.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_prompts_py_25)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/llm/cache.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_cache_py_26)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/git/repository.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_repository_py_27)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/git/__init__.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_git___init___py_28)
-                  - [/home/mw/Projects/satware/repoinsight/src/repoinsight/git/metadata.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_metadata_py_29)
-              - [/home/mw/Projects/satware/repoinsight/tests/__init__.py](#file__home_mw_Projects_satware_repoinsight_tests___init___py_30)
-              - [/home/mw/Projects/satware/repoinsight/tests/test_config.py](#file__home_mw_Projects_satware_repoinsight_tests_test_config_py_31)
+- [verify_thread_fix.py](#file__home_mw_Projects_satware_repoinsight_verify_thread_fix_py_0)
+- [verify_gui_flag.py](#file__home_mw_Projects_satware_repoinsight_verify_gui_flag_py_1)
+- [test_gui_flag.py](#file__home_mw_Projects_satware_repoinsight_test_gui_flag_py_2)
+- [detailed_test.py](#file__home_mw_Projects_satware_repoinsight_detailed_test_py_3)
+- [check_ruff_errors.py](#file__home_mw_Projects_satware_repoinsight_check_ruff_errors_py_4)
+- [run_repoinsight.py](#file__home_mw_Projects_satware_repoinsight_run_repoinsight_py_5)
+- [INSTALL.md](#file__home_mw_Projects_satware_repoinsight_INSTALL_md_6)
+- [test_gui.py](#file__home_mw_Projects_satware_repoinsight_test_gui_py_7)
+- [README.md](#file__home_mw_Projects_satware_repoinsight_README_md_8)
+  - [src/repoinsight/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight___init___py_9)
+  - [src/repoinsight/**main**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight___main___py_10)
+    - [src/repoinsight/cli/commands.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli_commands_py_11)
+    - [src/repoinsight/cli/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli___init___py_12)
+    - [src/repoinsight/scanner/engine.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_engine_py_13)
+    - [src/repoinsight/scanner/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner___init___py_14)
+    - [src/repoinsight/scanner/filters.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_filters_py_15)
+    - [src/repoinsight/core/engine.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_engine_py_16)
+    - [src/repoinsight/core/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_core___init___py_17)
+    - [src/repoinsight/core/models.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_models_py_18)
+    - [src/repoinsight/markdown/generator.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_generator_py_19)
+    - [src/repoinsight/markdown/components.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_components_py_20)
+    - [src/repoinsight/markdown/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown___init___py_21)
+    - [src/repoinsight/config/yaml.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_yaml_py_22)
+    - [src/repoinsight/config/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_config___init___py_23)
+    - [src/repoinsight/config/models.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_models_py_24)
+    - [src/repoinsight/gui/config_panel.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_config_panel_py_25)
+    - [src/repoinsight/gui/worker.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_worker_py_26)
+    - [src/repoinsight/gui/preview_panel.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_preview_panel_py_27)
+    - [src/repoinsight/gui/profile_panel.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_profile_panel_py_28)
+    - [src/repoinsight/gui/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui___init___py_29)
+    - [src/repoinsight/gui/app.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_app_py_30)
+    - [src/repoinsight/gui/main_window.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_main_window_py_31)
+    - [src/repoinsight/llm/client.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_client_py_32)
+    - [src/repoinsight/llm/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm___init___py_33)
+    - [src/repoinsight/llm/prompts.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_prompts_py_34)
+    - [src/repoinsight/llm/cache.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_cache_py_35)
+    - [src/repoinsight/git/repository.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_repository_py_36)
+    - [src/repoinsight/git/**init**.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_git___init___py_37)
+    - [src/repoinsight/git/metadata.py](#file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_metadata_py_38)
+  - [tests/**init**.py](#file__home_mw_Projects_satware_repoinsight_tests___init___py_39)
+  - [tests/test_config.py](#file__home_mw_Projects_satware_repoinsight_tests_test_config_py_40)
+  - [.clinerules/04-security.md](#file__home_mw_Projects_satware_repoinsight__clinerules_04-security_md_41)
+  - [.clinerules/06-advanced-features.md](#file__home_mw_Projects_satware_repoinsight__clinerules_06-advanced-features_md_42)
+  - [.clinerules/02-procject-structure.md](#file__home_mw_Projects_satware_repoinsight__clinerules_02-procject-structure_md_43)
+  - [.clinerules/09-cross-agent-collaboration.md](#file__home_mw_Projects_satware_repoinsight__clinerules_09-cross-agent-collaboration_md_44)
+  - [.clinerules/07-ui-standards.md](#file__home_mw_Projects_satware_repoinsight__clinerules_07-ui-standards_md_45)
+  - [.clinerules/01-tech-stack.md](#file__home_mw_Projects_satware_repoinsight__clinerules_01-tech-stack_md_46)
+  - [.clinerules/05-token-management.md](#file__home_mw_Projects_satware_repoinsight__clinerules_05-token-management_md_47)
+  - [.clinerules/03-development-workflow.md](#file__home_mw_Projects_satware_repoinsight__clinerules_03-development-workflow_md_48)
+  - [.clinerules/08-performance-benchmarks.md](#file__home_mw_Projects_satware_repoinsight__clinerules_08-performance-benchmarks_md_49)
+  - [docs/USAGE.md](#file__home_mw_Projects_satware_repoinsight_docs_USAGE_md_50)
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight___init___py_0"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_verify_thread_fix_py_0"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/**init**.py
+## File: verify_thread_fix.py
 
 **Language**: python
 
 ### Description
 
-This Python code defines metadata for a software project called `RepoInsight`, which is an automated tool that generates documentation and AI-enhanced descriptions for Git repositories. The code includes version information, author details, and licensing terms under the MIT license.
+This script automates testing the "QThread: Destroyed while thread is still running" fix by launching and interacting with the RepoInsight GUI, simulating a Run button click, and then closing the application.<end_of_turn>
 
 ### Metadata
 
 | Property          | Value                      |
 | ----------------- | -------------------------- |
-| **Size**          | 168 bytes                  |
-| **Last Modified** | 2025-04-16T16:47:53.116049 |
+| **Size**          | 5.5 KB                     |
+| **Last Modified** | 2025-04-16T20:33:48.909263 |
 | **Type**          | py                         |
+
+```python
+#!/usr/bin/env python
+"""
+Verification script for the thread handling fix in RepoInsight GUI.
+
+This script tests the fix for the "QThread: Destroyed while thread is still running" issue
+by launching the GUI, clicking the Run button, and then closing the application.
+"""
+
+import logging
+import sys
+import time
+from functools import partial
+
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication
+
+from repoinsight.gui.main_window import MainWindow
+
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+
+def run_test():
+    """Run the GUI test with automated actions."""
+    # Initialize the application
+    app = QApplication(sys.argv)
+    app.setApplicationName("RepoInsight Test")
+
+    # Import required components
+    from repoinsight.config.yaml import ConfigManager
+    from repoinsight.gui.config_panel import ConfigPanel
+    from repoinsight.gui.preview_panel import MarkdownPreviewPanel
+    from repoinsight.gui.profile_panel import ProfilePanel
+    from repoinsight import __version__
+
+    # Create main window
+    main_window = MainWindow()
+    main_window._worker = None
+
+    # Create and set up panels
+    profile_panel = ProfilePanel(main_window.config_manager)
+    main_window.left_layout.insertWidget(0, profile_panel)
+
+    config_panel = ConfigPanel()
+    main_window.center_layout.insertWidget(0, config_panel)
+
+    preview_panel = MarkdownPreviewPanel()
+    main_window.right_layout.insertWidget(0, preview_panel)
+
+    # Setup worker related functions
+    def _on_generation_started():
+        if not main_window.current_config:
+            from PySide6.QtWidgets import QMessageBox
+            QMessageBox.warning(
+                main_window,
+                "Configuration Error",
+                "No configuration available. Please open a repository first.",
+            )
+            return
+
+        # Stop any existing worker
+        if main_window._worker and main_window._worker.is_running():
+            main_window._worker.stop()
+
+        # Initialize worker and store reference in main_window
+        from repoinsight.gui.worker import DocumentationWorker
+        main_window._worker = DocumentationWorker(main_window.current_config)
+
+        # Connect worker signals
+        main_window._worker.started.connect(
+            lambda: main_window.status_label.setText("Documentation generation started...")
+        )
+        main_window._worker.progress.connect(lambda p, m: _update_progress(p, m))
+        main_window._worker.finished.connect(lambda markdown: _on_generation_completed(markdown))
+        main_window._worker.error.connect(lambda msg: _on_generation_error(msg))
+
+        # Start worker
+        main_window._worker.start()
+
+    def _update_progress(percentage, message):
+        main_window.progress_bar.setValue(percentage)
+        main_window.progress_bar.setVisible(True)
+        main_window.status_label.setText(message)
+
+    def _on_generation_completed(markdown):
+        main_window.progress_bar.setVisible(False)
+        main_window.status_label.setText("Documentation generation completed")
+
+        if markdown:
+            # Emit signal with the generated markdown
+            main_window.generation_completed.emit(markdown)
+        else:
+            from PySide6.QtWidgets import QMessageBox
+            QMessageBox.warning(
+                main_window,
+                "Generation Error",
+                "Failed to generate documentation. Please check the logs for details.",
+            )
+
+    def _on_generation_error(message):
+        main_window.progress_bar.setVisible(False)
+        main_window.status_label.setText(f"Error: {message}")
+
+        from PySide6.QtWidgets import QMessageBox
+        QMessageBox.critical(
+            main_window,
+            "Generation Error",
+            f"An error occurred during documentation generation:\n\n{message}",
+        )
+
+    # Attach methods to main window
+    main_window._on_generation_started = _on_generation_started
+    main_window._update_progress = _update_progress
+    main_window._on_generation_completed = _on_generation_completed
+    main_window._on_generation_error = _on_generation_error
+
+    # Connect signals
+    main_window.generation_started.connect(main_window._on_generation_started)
+    main_window.generation_completed.connect(preview_panel.set_markdown)
+
+    # Show the window
+    main_window.show()
+
+    # Schedule the Run action
+    logger.info("Scheduling Run action")
+    QTimer.singleShot(1000, lambda: test_run_action(main_window))
+
+    # Run the application
+    return app.exec()
+
+def test_run_action(main_window):
+    """Test clicking the Run button and then closing the window."""
+    try:
+        logger.info("Triggering Run action")
+        main_window.run_action.trigger()
+
+        # Schedule application close after a delay to let the operation start
+        logger.info("Scheduling application close")
+        QTimer.singleShot(3000, lambda: test_close_app(main_window))
+    except Exception as e:
+        logger.error(f"Error triggering run action: {e}")
+
+def test_close_app(main_window):
+    """Close the application window."""
+    try:
+        logger.info("Closing application")
+        main_window.close()
+        logger.info("Application closed successfully")
+    except Exception as e:
+        logger.error(f"Error closing application: {e}")
+
+
+if __name__ == "__main__":
+    logger.info("Starting RepoInsight GUI test for thread fix verification")
+    sys.exit(run_test())
+
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_verify_gui_flag_py_1"></a>
+
+## File: verify_gui_flag.py
+
+**Language**: python
+
+### Description
+
+This script verifies the `--gui` flag is present in `repoinsight`’s help output and tests invalid flag handling.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.6 KB                     |
+| **Last Modified** | 2025-04-16T19:22:17.489996 |
+| **Type**          | py                         |
+
+```python
+#!/usr/bin/env python
+"""
+Simple verification script for the --gui flag.
+This checks that the flag appears in the help output.
+"""
+
+import subprocess
+import sys
+
+
+def run_command(cmd):
+    """Run a command and return its output."""
+    print(f"Running: {' '.join(cmd)}")
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    return result.stdout, result.stderr, result.returncode
+
+
+def main() -> None:
+    print("Verifying --gui flag implementation")
+    print("=" * 40)
+
+    # Check if --gui appears in help output
+    stdout, stderr, code = run_command([sys.executable, "-m", "repoinsight", "--help"])
+    print(f"Return code: {code}")
+
+    # Print the full help output for debugging
+    print("\nHelp Output:")
+    print("-" * 40)
+    print(stdout)
+    print("-" * 40)
+
+    if "--gui" in stdout:
+        print("SUCCESS: --gui flag is mentioned in help output")
+        # Find the line containing --gui
+        for line in stdout.split("\n"):
+            if "--gui" in line:
+                print(f"Found in help: {line}")
+                break
+    else:
+        print("ERROR: --gui flag not found in help output")
+    print("-" * 40)
+
+    # Try invalid flag to verify error handling
+    stdout, stderr, code = run_command([sys.executable, "-m", "repoinsight", "--invalid-flag"])
+    print(f"Invalid flag test return code: {code}")
+    if code != 0:
+        print("SUCCESS: Invalid flag correctly causes error")
+    else:
+        print("ERROR: Invalid flag didn't cause error")
+    print("-" * 40)
+
+    print("Verification complete")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_test_gui_flag_py_2"></a>
+
+## File: test_gui_flag.py
+
+**Language**: python
+
+### Description
+
+This script tests the `--gui` flag by mocking the `run_app` function and verifying its execution within the main application logic.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.4 KB                     |
+| **Last Modified** | 2025-04-16T19:22:17.489996 |
+| **Type**          | py                         |
+
+```python
+#!/usr/bin/env python
+"""
+Test script to verify the --gui flag functionality.
+This script simply intercepts the run_app function call to avoid actually launching a window.
+"""
+
+import logging
+from unittest.mock import patch
+
+# Set up logging
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+print("Script started - testing GUI flag implementation")
+
+
+# Mock the GUI launch to avoid actually opening a window
+def mock_run_app() -> int:
+    print("SUCCESS: GUI would be launched here!")
+    logger.debug("run_app function was called")
+    return 0
+
+
+try:
+    # Patch the run_app function in the gui.app module
+    with patch("repoinsight.gui.app.run_app", mock_run_app):
+        # Import the main function after patching
+        print("Importing main function...")
+        from repoinsight.__main__ import main
+
+        # Test with --gui flag
+        print("Testing with --gui flag...")
+        exit_code = main(["--gui"])
+        print(f"Exit code: {exit_code}")
+
+        # Test with --gui and additional flags
+        print("\nTesting with --gui and additional flags...")
+        exit_code = main(["--gui", "--verbose"])
+        print(f"Exit code: {exit_code}")
+except Exception as e:
+    print(f"ERROR: {e}")
+    import traceback
+
+    traceback.print_exc()
+
+print("Script finished")
+
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_detailed_test_py_3"></a>
+
+## File: detailed_test.py
+
+**Language**: python
+
+### Description
+
+This script thoroughly tests the `--gui` flag by instrumenting a CLI application to track GUI launches and command arguments.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 3.9 KB                     |
+| **Last Modified** | 2025-04-16T19:04:26.824106 |
+| **Type**          | py                         |
+
+```python
+#!/usr/bin/env python
+"""
+Detailed test script for the --gui flag.
+This creates a test harness that intercepts several functions to track exactly what's happening.
+"""
+
+import logging
+import sys
+from unittest.mock import MagicMock, patch
+
+# Configure detailed logging
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+# Create mock objects for tracking function calls
+mock_run_app = MagicMock(return_value=0)
+mock_run_app.__name__ = "run_app"  # needed for some decorators
+
+# List to capture command line args as they're processed
+captured_args = []
+
+
+def args_capturer(*args, **kwargs):
+    """Capture arguments being passed to typer callback"""
+    logger.debug(f"Callback called with: args={args}, kwargs={kwargs}")
+    captured_args.append((args, kwargs))
+    # Continue with original function
+    return original_main(*args, **kwargs)
+
+
+print("=" * 60)
+print("Starting detailed GUI flag test")
+print("=" * 60)
+
+try:
+    # Step 1: Patch gui.app.run_app to prevent actual GUI from launching
+    with patch("repoinsight.gui.app.run_app", mock_run_app):
+        # Get a reference to the CLI commands module
+        from repoinsight.cli import commands
+
+        # Step 2: Store reference to original main callback function
+        original_main = commands.main
+
+        # Step 3: Replace the main callback with our instrumented version
+        commands.main = args_capturer
+
+        # Test various command combinations
+        test_cases = [
+            ["--gui"],
+            ["--gui", "--help"],
+            ["run", "--help"],
+            ["--version", "--gui"],
+            ["--gui", "run", "--repository", "."],
+        ]
+
+        for i, args in enumerate(test_cases):
+            print(f"\nTest case {i+1}: {' '.join(args)}")
+            print("-" * 40)
+
+            # Reset state for this test
+            captured_args.clear()
+            mock_run_app.reset_mock()
+
+            # Import main module fresh to avoid state from previous tests
+            if "repoinsight.__main__" in sys.modules:
+                del sys.modules["repoinsight.__main__"]
+
+            # Run the main function with our test arguments
+            from repoinsight.__main__ import main
+
+            try:
+                exit_code = main(args)
+                print(f"Exit code: {exit_code}")
+            except SystemExit as e:
+                print(f"SystemExit with code: {e.code}")
+            except Exception as e:
+                print(f"Exception: {type(e).__name__}: {e}")
+
+            # Check if GUI was launched
+            if mock_run_app.called:
+                print("✓ GUI was launched")
+                print(f"  Times called: {mock_run_app.call_count}")
+            else:
+                print("✗ GUI was NOT launched")
+
+            # Print captured args if any
+            if captured_args:
+                print("Callback args captured:")
+                for args_tuple in captured_args:
+                    print(f"  - Args: {args_tuple[0]}, Kwargs: {args_tuple[1]}")
+
+            print("-" * 40)
+
+    print("\nFinal verification:")
+    print("=" * 40)
+    # Reset all our patches and mocks
+    commands.main = original_main
+
+    # Try direct test with our verification harness
+    with patch("repoinsight.gui.app.run_app") as final_mock:
+        final_mock.return_value = 0
+        final_mock.__name__ = "run_app"
+
+        print("Running final test: 'python -m repoinsight --gui'")
+        if "repoinsight.__main__" in sys.modules:
+            del sys.modules["repoinsight.__main__"]
+
+        from repoinsight.__main__ import main
+
+        exit_code = main(["--gui"])
+
+        if final_mock.called:
+            print("TEST PASSED: --gui flag properly calls the GUI application")
+        else:
+            print("TEST FAILED: --gui flag did not launch the GUI application")
+
+except Exception as e:
+    import traceback
+
+    print(f"Test framework error: {e}")
+    traceback.print_exc()
+
+print("\nDetailed test complete")
+print("=" * 60)
+
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_check_ruff_errors_py_4"></a>
+
+## File: check_ruff_errors.py
+
+**Language**: python
+
+### Description
+
+This script verifies the B008 linting configuration by running ruff on a specified file and reporting the results.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.0 KB                     |
+| **Last Modified** | 2025-04-16T20:50:50.388706 |
+| **Type**          | py                         |
+
+```python
+"""
+Simple script to check if our configuration for B008 is working properly.
+"""
+import os
+import sys
+from pathlib import Path
+
+# Use direct module imports for more reliable execution
+try:
+    from ruff.__main__ import find_ruff_bin
+
+    ruff_path = find_ruff_bin()
+except ImportError:
+    print("Could not import ruff module. Make sure it's installed.")
+    sys.exit(1)
+
+# Path to the file to check
+commands_path = Path("src/repoinsight/cli/commands.py").absolute()
+
+if not commands_path.exists():
+    print(f"File not found: {commands_path}")
+    sys.exit(1)
+
+print(f"Using ruff at: {ruff_path}")
+print(f"Checking file: {commands_path}")
+print(f"Current directory: {os.getcwd()}")
+print("\nChecking for B008 errors...\n")
+
+# Execute ruff directly
+result = os.system(f"{ruff_path} check --select=B008 {commands_path}")
+
+# Explain the result
+if result == 0:
+    print("\nSuccess! No B008 errors found. The configuration is working correctly.")
+else:
+    print("\nB008 errors still exist. The configuration may need adjustment.")
+
+sys.exit(0 if result == 0 else 1)
+
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_run_repoinsight_py_5"></a>
+
+## File: run_repoinsight.py
+
+**Language**: python
+
+### Description
+
+This script programmatically runs RepoInsight to process a repository and generate markdown documentation.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.9 KB                     |
+| **Last Modified** | 2025-04-16T17:45:20.197173 |
+| **Type**          | py                         |
+
+```python
+#!/usr/bin/env python
+"""
+Example script for running RepoInsight.
+
+This script demonstrates how to run RepoInsight programmatically.
+"""
+
+import asyncio
+import logging
+import sys
+from pathlib import Path
+
+from repoinsight.config.yaml import load_config
+from repoinsight.core.engine import ProcessingEngine
+
+
+async def main() -> int:
+    """Run RepoInsight programmatically."""
+    # Set up logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    )
+
+    try:
+        # Load configuration from sample file
+        config_path = Path("sample_config.yml")
+        if not config_path.exists():
+            print(f"Error: Configuration file not found: {config_path}")
+            return 1
+
+        config = load_config(config_path)
+        print(f"Loaded configuration: {config.name}")
+
+        # Create processing engine
+        engine = ProcessingEngine(config)
+
+        # Process repository and generate markdown
+        print("Processing repository...")
+        snapshot, markdown = await engine.process_and_generate()
+
+        # Print some stats
+        print(f"Processed {len(snapshot.files)} files")
+
+        # Save output if path is specified
+        if config.output_path:
+            output_path = config.get_absolute_output_path()
+            if output_path:
+                print(f"Documentation saved to: {output_path}")
+            else:
+                print("No output path specified")
+        else:
+            # Print a preview of the markdown
+            print("\nMarkdown Preview (first 500 characters):")
+            print("-" * 80)
+            print(markdown[:500] + "...")
+            print("-" * 80)
+
+        return 0
+    except Exception as e:
+        print(f"Error: {e}")
+        logging.exception("Error running RepoInsight")
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(asyncio.run(main()))
+
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_INSTALL_md_6"></a>
+
+## File: INSTALL.md
+
+**Language**: markdown
+
+### Description
+
+This guide details how to install and set up RepoInsight, a repository analysis tool, using either Poetry or pip.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 3.1 KB                     |
+| **Last Modified** | 2025-04-16T17:52:01.127614 |
+| **Type**          | md                         |
+
+````markdown
+# Installation Guide for satware® RepoInsight
+
+This guide provides detailed instructions for installing and setting up RepoInsight on different platforms.
+
+## Prerequisites
+
+- Python 3.11, 3.12, or 3.13
+- Git (for repository analysis)
+- Cortex or another OpenAI-compatible LLM server (optional, for AI-generated descriptions)
+
+## Option 1: Installation with Poetry (Recommended)
+
+[Poetry](https://python-poetry.org/) is the recommended dependency management tool for RepoInsight.
+
+### 1. Install Poetry
+
+#### Linux/macOS
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+````
+
+#### Windows
+
+```powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+```
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/satware/repoinsight.git
+cd repoinsight
+```
+
+### 3. Install Dependencies
+
+```bash
+poetry install
+```
+
+### 4. Run RepoInsight
+
+```bash
+# CLI mode
+poetry run repoinsight
+
+# GUI mode
+poetry run repoinsight --gui
+```
+
+## Option 2: Installation with pip
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/satware/repoinsight.git
+cd repoinsight
+```
+
+### 2. Create and Activate Virtual Environment (Optional but Recommended)
+
+#### Linux/macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### Windows
+
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Install RepoInsight in Development Mode
+
+```bash
+pip install -e .
+```
+
+### 5. Run RepoInsight
+
+```bash
+# CLI mode
+python -m repoinsight
+
+# GUI mode
+python -m repoinsight --gui
+```
+
+## Setting Up Cortex for LLM Integration
+
+RepoInsight can use Cortex or other OpenAI-compatible LLM servers to generate descriptions of source code files.
+
+### Running Cortex Locally
+
+1. Install Cortex by following the instructions at <https://cortex.so/docs>
+
+2. Start the Cortex server:
+
+```bash
+cortex run llama3
+```
+
+3. Configure RepoInsight to use Cortex:
+   - Edit your configuration file (e.g., `sample_config.yml`)
+   - Ensure `llm.enabled` is set to `true`
+   - Set `llm.api_base_url` to your Cortex server URL (default: `http://localhost:8000/v1`)
+   - Set `llm.model` to the model you're running (e.g., `llama3`)
+
+## Common Issues and Troubleshooting
+
+### Qt/PySide6 Installation Issues
+
+If you encounter issues installing PySide6, you may need to install additional system dependencies:
+
+#### Ubuntu/Debian
+
+```bash
+sudo apt-get install libxcb-xinerama0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xkb1 libxkbcommon-x11-0
+```
+
+#### Fedora/RHEL
+
+```bash
+sudo dnf install libxcb libxkbcommon-x11
+```
+
+#### macOS
+
+```bash
+brew install cmake
+```
+
+### LLM Integration Issues
+
+If you're having trouble connecting to your LLM server:
+
+1. Verify the server is running and accessible
+2. Check your API URL configuration
+3. If using Cortex, ensure the model is loaded correctly
+4. Try increasing the timeout value in your configuration
+
+## Installing Pre-commit Hooks (for Developers)
+
+```bash
+# Install pre-commit
+pip install pre-commit
+
+# Install the git hooks
+pre-commit install
+```
+
+````
+
+
+<a id="file__home_mw_Projects_satware_repoinsight_test_gui_py_7"></a>
+
+## File: test_gui.py
+
+**Language**: python
+
+### Description
+
+This script launches the RepoInsight GUI for testing and demonstration purposes.<end_of_turn>
+
+### Metadata
+
+| Property | Value |
+| --- | --- |
+| **Size** | 436 bytes |
+| **Last Modified** | 2025-04-16T19:04:26.824677 |
+| **Type** | py |
+
+
+
+```python
+#!/usr/bin/env python
+"""
+Test script for running the RepoInsight GUI.
+
+This script demonstrates how to run the RepoInsight GUI directly.
+"""
+
+import logging
+import sys
+
+from repoinsight.gui import run_app
+
+if __name__ == "__main__":
+    # Set up logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    )
+
+    # Run the application
+    sys.exit(run_app())
+
+````
+
+<a id="file__home_mw_Projects_satware_repoinsight_README_md_8"></a>
+
+## File: README.md
+
+**Language**: markdown
+
+### Description
+
+RepoInsight automatically generates richly annotated markdown documentation for Git repositories, optionally enhanced with AI-powered descriptions.<end_of_turn>
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 3.0 KB                     |
+| **Last Modified** | 2025-04-16T16:47:35.042836 |
+| **Type**          | md                         |
+
+````markdown
+# satware® RepoInsight
+
+A powerful cross-platform application for automatic documentation of Git repositories with AI-enhanced descriptions.
+
+## Overview
+
+satware® RepoInsight automatically aggregates source code files from any Git repository (or folder structure), combines them into a richly annotated, single markdown document, and enhances this artifact with AI-generated descriptions using an OpenAI-compatible language model API such as Cortex.
+
+## Features
+
+- **Broad Compatibility**: Support for any Git-hosted or local repository; direct folder processing for repos without version control.
+- **YAML-Driven Configurability**: Flexible, human-readable configuration format to specify project roots, file inclusion/exclusion rules, output layout, and AI integration parameters.
+- **AI-Powered Summarization**: Seamless integration with Cortex or other OpenAI-compatible LLM servers to generate concise, contextually relevant descriptions per file.
+- **Rich Metadata Capture**: Embedding of detailed Git repository metadata, including commit hashes, branch names, remote URLs, and generation timestamps.
+- **Robust File Scanning**: Efficient, recursive discovery of source files using filters and exclusion rules; accurate language detection for markdown syntax highlighting.
+- **Markdown Generation**: Creation of clean, CommonMark-compliant markdown documents with auto-generated Table of Contents, per-file sections, and metadata tags.
+- **Cross-Platform GUI**: Modern, intuitive interface built on PySide6, optimized for Linux, Windows, and macOS.
+- **Efficient Caching**: Local, filesystem-based caching keyed by file path and repository commit to ensure minimal redundant API calls.
+
+## Installation
+
+### Prerequisites
+
+- Python 3.11 or newer
+- Git (for repository analysis)
+- Cortex or another OpenAI-compatible LLM server (optional, for AI-generated descriptions)
+
+### Using Poetry (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/satware/repoinsight.git
+cd repoinsight
+
+# Install dependencies with Poetry
+poetry install
+
+# Run the application
+poetry run repoinsight
+```
+````
+
+### Using pip
+
+```bash
+# Install from PyPI
+pip install repoinsight
+
+# Run the application
+repoinsight
+```
+
+## Quick Start
+
+1. Launch the application
+2. Select a Git repository or folder
+3. Configure file inclusion/exclusion patterns
+4. Set up LLM integration (optional)
+5. Generate the documentation
+6. View and export the markdown document
+
+## Configuration
+
+RepoInsight uses YAML configuration files to customize its behavior. Here's a basic example:
+
+```yaml
+name: "My Project Documentation"
+root_path: "/path/to/repository"
+scan_directories:
+  - "src"
+  - "docs"
+exclude_directories:
+  - "venv"
+  - "node_modules"
+  - ".git"
+file_patterns:
+  include:
+    - "*.py"
+    - "*.js"
+    - "*.md"
+  exclude:
+    - "*.pyc"
+    - "*.min.js"
+llm:
+  enabled: true
+  api_base_url: "http://localhost:8000/v1"
+  model: "llama3"
+  temperature: 0.3
+```
+
+## License
+
+MIT License
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+````
+
+
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight___init___py_9"></a>
+
+## File: src/repoinsight/__init__.py
+
+**Language**: python
+
+### Description
+
+This code generates automated Git repository documentation using AI for enhanced descriptions.<end_of_turn>
+
+### Metadata
+
+| Property | Value |
+| --- | --- |
+| **Size** | 168 bytes |
+| **Last Modified** | 2025-04-16T16:47:53.116049 |
+| **Type** | py |
+
+
 
 ```python
 """
@@ -82,17 +1086,17 @@ __version__ = "0.1.0"
 __author__ = "satware"
 __license__ = "MIT"
 
-```
+````
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight___main___py_1"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight___main___py_10"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/**main**.py
+## File: src/repoinsight/**main**.py
 
 **Language**: python
 
 ### Description
 
-This Python module serves as the main entry point for RepoInsight, providing a command-line interface and GUI options. It uses logging to handle application output and includes a CLI app that handles both command-line arguments and GUI flag internally. The code follows standard Python practices with type hints and clear documentation, making it easy to understand and maintain.
+This Python code serves as the main application entry point, launching either the command-line interface or GUI for RepoInsight.<end_of_turn>
 
 ### Metadata
 
@@ -141,96 +1145,15 @@ if __name__ == "__main__":
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli_commands_py_2"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli_commands_py_11"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/cli/commands.py
+## File: src/repoinsight/cli/commands.py
 
 **Language**: python
 
 ### Description
 
-This code is a Python script that provides CLI functionality for managing cache files in a directory. Here's an explanation of the key components:
-
-1. **Main Functionality**:
-
-- The script allows users to clear their cache by specifying either a configuration file or profile.
-- It supports both interactive and non-interactive modes (using `--no-interaction` flag).
-
-2. **Configuration Loading**:
-
-```python
-def _load_configuration(config_file: Path | None, profile: str | None) -> RepoInsightConfig:
-    # Creates a ConfigManager instance
-    config_manager = ConfigManager()
-
-    # Tries to load from specified profile first
-    if profile:
-        return config_manager.load_profile(profile)
-```
-
-3. **Cache Clearing Logic**:
-
-```python
-def clear_cache(older_than: int | None) -> int:
-    cache_dir = config.get_absolute_cache_path()
-
-    if not cache_dir.exists():
-        console.print("Cache directory does not exist.")
-        return 0
-
-    # Confirm deletion with prompt
-    confirm = typer.confirm(f"Clear cache entries older than {older_than} days?")
-```
-
-4. **Size Formatting**:
-
-```python
-def _format_size(size_bytes: int) -> str:
-    if size_bytes < 1024:
-        return f"{size_bytes} bytes"
-    # ... more formatting logic ...
-```
-
-5. **Error Handling**:
-
-```python
-except Exception as e:
-    console.print(f"[bold red]Error: {e}")
-    return 1
-```
-
-Key Features:
-
-- Supports both configuration files and profiles for cache management.
-- Provides interactive prompts for confirmation before clearing cache.
-- Includes error handling with informative messages.
-- Offers human-readable file size formatting.
-
-Usage Example:
-
-```bash
-# Clear entire cache without prompt
-python script.py --no-interaction
-
-# Clear cache older than 1 week
-python script.py --older-than=7d
-
-# Use configuration file for cache management
-python script.py --config-file=config.yaml
-```
-
-The code follows good practices by:
-
-- Separating concerns into different functions.
-- Including proper error handling and user feedback.
-- Supporting both interactive and non-interactive modes.
-
-Potential Improvements:
-
-1. Add more detailed logging instead of console output.
-2. Implement caching for configuration loading to improve performance.
-3. Add support for multiple cache directories or excluding certain files/directories.
-4. Enhance the size formatting with
+Error generating description:
 
 ### Metadata
 
@@ -768,27 +1691,15 @@ if __name__ == "__main__":
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli___init___py_3"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_cli___init___py_12"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/cli/**init**.py
+## File: src/repoinsight/cli/**init**.py
 
 **Language**: python
 
 ### Description
 
-# Description
-
-This Python code defines a command-line interface (CLI) package called `repoinsight` that serves as an entry point for the application. The code imports commands from the `cli/commands` module and exports only the `app` object, which is likely the main CLI component.
-
-# Key Functionality
-
-- Provides a command-line interface (CLI) for RepoInsight applications
-- Exports the app object to allow access to CLI functionality
-
-# Important Patterns & Techniques
-
-- Module organization: Uses a separate commands module for organizing CLI logic
-- Import pattern: Imports from `cli/commands` and exports only specific components
+This Python code defines a command-line interface package for RepoInsight, exposing its core functionality through the `app` module.<end_of_turn>
 
 ### Metadata
 
@@ -811,47 +1722,22 @@ __all__ = ["app"]
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_engine_py_4"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_engine_py_13"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/scanner/engine.py
+## File: src/repoinsight/scanner/engine.py
 
 **Language**: python
 
 ### Description
 
-This code defines a class `LanguageDetector` that can detect programming languages from file extensions. Here's how it works:
-
-1. The class has a class-level dictionary `EXTENSION_TO_LANGUAGE` that maps file extensions to language identifiers.
-
-2. The `detect_language` method takes a file path as input and:
-
-   - Converts the path to a Path object
-   - Gets the lowercase extension (without the dot)
-   - Handles special cases like files without extensions or specific filename patterns
-
-3. For files with extensions, it looks up the language in the dictionary.
-
-4. It also handles some special cases for specific file types like Dockerfiles and Makefiles.
-
-5. If no extension is found, it returns "text" as a default case.
-
-The code seems to be designed to work with Python 3.x, given the use of `Path` from the `pathlib` module (which was introduced in Python 3.4).
-
-Some potential improvements could include:
-
-- Adding more file extensions and languages
-- Implementing more sophisticated language detection algorithms for files without clear extensions
-- Handling different operating systems' path separators
-- Caching detected languages to improve performance
-
-Overall, this is a good starting point for a simple language detector based on file extensions.
+Error generating description:
 
 ### Metadata
 
 | Property          | Value                      |
 | ----------------- | -------------------------- |
 | **Size**          | 7.8 KB                     |
-| **Last Modified** | 2025-04-16T20:23:01.105761 |
+| **Last Modified** | 2025-04-16T20:50:50.389077 |
 | **Type**          | py                         |
 
 ```python
@@ -1127,15 +2013,15 @@ class FileTypeDetector:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner___init___py_5"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner___init___py_14"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/scanner/**init**.py
+## File: src/repoinsight/scanner/**init**.py
 
 **Language**: python
 
 ### Description
 
-This code defines a file scanning package for RepoInsight that provides functionality to scan repositories and directories for documentation files. It imports various filter types (And, Or, Not, Pattern/Regex filters) and a repository scanner engine. The module exports several key components including the RepositoryScanner and FileTypeDetector classes along with various filter implementations.
+This Python package facilitates scanning repositories to identify and filter files based on various criteria.<end_of_turn>
 
 ### Metadata
 
@@ -1184,68 +2070,22 @@ __all__ = [
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_filters_py_6"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_scanner_filters_py_15"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/scanner/filters.py
+## File: src/repoinsight/scanner/filters.py
 
 **Language**: python
 
 ### Description
 
-Here's the implementation of the `LambdaFilter` class:
-
-```python
-class LambdaFilter(FileFilter):
-    """Filter that uses a custom function to determine matches."""
-
-    def __init__(self, func: Callable[[Path], bool]) -> None:
-        """
-        Initialize a lambda filter.
-
-        Args:
-            func: Function that takes a Path and returns True if it matches
-        """
-        self.func = func
-
-    def matches(self, file_path: Path) -> bool:
-        return self.func(file_path)
-```
-
-This class implements a custom file filter that uses a provided function to determine whether a given file path matches the filter's criteria. The `matches` method takes a `file_path` parameter and returns the result of calling the provided function on that path.
-
-The class is designed to be flexible, allowing users to define their own matching logic without modifying the core filtering functionality. This makes it useful for creating complex filters by combining multiple simple filters.
-
-To use this filter, you would create an instance with a custom function:
-
-```python
-def my_filter(path: Path) -> bool:
-    # Custom logic here
-    return path.name.lower() == "example.txt"
-
-filter = LambdaFilter(my_filter)
-```
-
-The `LambdaFilter` class can be used in combination with other filters to create more complex filtering rules. For example, you could combine it with a pattern filter and a size filter:
-
-```python
-pattern_filter = PatternFilter(["*.txt", "*.doc"])]
-size_filter = SizeFilter(max_size=1000)
-
-complex_filter = AndFilter(
-    LambdaFilter(lambda path: path.name.lower() == "example.txt"),
-    NotFilter(ContentFilter(lambda content: b"\0" in content[:1024].encode()))),
-    size_filter
-)
-```
-
-This implementation allows for a high degree of flexibility and reusability when creating custom file filters.
+Error generating description:
 
 ### Metadata
 
 | Property          | Value                      |
 | ----------------- | -------------------------- |
 | **Size**          | 8.3 KB                     |
-| **Last Modified** | 2025-04-16T20:19:33.232529 |
+| **Last Modified** | 2025-04-16T20:50:50.389219 |
 | **Type**          | py                         |
 
 ```python
@@ -1523,107 +2363,15 @@ class LambdaFilter(FileFilter):
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_engine_py_7"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_engine_py_16"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/core/engine.py
+## File: src/repoinsight/core/engine.py
 
 **Language**: python
 
 ### Description
 
-I'll help you implement the MarkdownGenerator class. Here's a suggested implementation:
-
-```python
-class MarkdownGenerator:
-    def __init__(self,
-                 include_toc=False,
-                 include_metadata=True,
-                 include_file_stats=False,
-                 include_commit_info=False,
-                 syntax_highlighting=False):
-        """
-        Initialize MarkdownGenerator.
-
-        Args:
-            include_toc (bool): Whether to include table of contents.
-            include_metadata (bool): Whether to include file metadata.
-            include_file_stats (bool): Whether to include file statistics.
-            include_commit_info (bool): Whether to include commit information.
-            syntax_highlighting (bool): Whether to highlight code syntax.
-        """
-        self.include_toc = include_toc
-        self.include_metadata = include_metadata
-        self.include_file_stats = include_file_stats
-        self.include_commit_info = include_commit_info
-        self.syntax_highlighting = syntax_highlighting
-
-    def generate(self, snapshot):
-        """
-        Generate Markdown documentation from a repository snapshot.
-
-        Args:
-            snapshot: Repository snapshot to process.
-
-        Returns:
-            str: Generated Markdown document.
-        """
-        markdown = "# Documentation\n\nGenerated on: " + snapshot.timestamp.strftime("%Y-%m-%d %H:%M:%S") + "\n\n"
-
-        # Add table of contents if enabled
-        if self.include_toc:
-            markdown += self._generate_toc(snapshot)
-
-        # Add file metadata and statistics
-        if self.include_metadata or self.include_file_stats:
-            markdown += self._generate_files_info(snapshot)
-
-        # Add commit information
-        if self.include_commit_info:
-            markdown += self._generate_commit_info(snapshot)
-
-        return markdown
-
-    def _generate_toc(self, snapshot):
-        """
-        Generate table of contents.
-
-        Args:
-            snapshot: Repository snapshot to process.
-
-        Returns:
-            str: Generated table of contents.
-        """
-        # Implement table of contents generation
-        pass
-
-    def _generate_files_info(self, snapshot):
-        """
-        Generate file metadata and statistics.
-
-        Args:
-            snapshot: Repository snapshot to process.
-
-        Returns:
-            str: Generated file information.
-        """
-        # Implement file information generation
-        pass
-
-    def _generate_commit_info(self, snapshot):
-        """
-        Generate commit information.
-
-        Args:
-            snapshot: Repository snapshot to process.
-
-        Returns:
-            str: Generated commit information.
-        """
-        # Implement commit information generation
-        pass
-```
-
-This implementation provides a
+This code implements a core processing engine for RepoInsight that scans repositories, extracts metadata, generates file descriptions using an LLM, and produces Markdown documentation.<end_of_turn>
 
 ### Metadata
 
@@ -1866,25 +2614,15 @@ class ProcessingEngine:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_core___init___py_8"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_core___init___py_17"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/core/**init**.py
+## File: src/repoinsight/core/**init**.py
 
 **Language**: python
 
 ### Description
 
-**Description:**
-This Python package serves as the core processing engine for RepoInsight, orchestrating its workflow. It imports essential components from `repoinsight.core.engine` and `repoinsight.core.models`, which handle file data and repository snapshots.
-
-**Key Components:**
-
-- `ProcessingEngine`: The main orchestration component
-- `FileData`: Represents processed files in the system
-- `RepositorySnapshot`: Manages repository state information
-
-**Technical Pattern:**
-The package follows a modular design by importing specific components from related modules, adhering to Python's import best practices.
+This Python package serves as the central processing engine for RepoInsight, managing repository analysis workflows.<end_of_turn>
 
 ### Metadata
 
@@ -1913,114 +2651,23 @@ __all__ = [
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_models_py_9"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_core_models_py_18"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/core/models.py
+## File: src/repoinsight/core/models.py
 
 **Language**: python
 
 ### Description
 
-I'll help you understand and implement the `RepositorySnapshot` class. Here's a breakdown of how it works:
-
-1. **Class Definition**:
-
-```python
-class RepositorySnapshot:
-    def __init__(self, name: str, root_path: str | Path, files: list = None,
-                 metadata: dict = None, generation_timestamp: str = None):
-        self.name = name
-        self.root_path = root_path
-        self.files = files or []
-        self.metadata = metadata or {}
-        self.generation_timestamp = generation_timestamp or datetime.datetime.now().isoformat()
-```
-
-2. **Adding Files**:
-
-```python
-def add_file(self, file_data: FileData) -> None:
-    """
-    Add a file to the repository snapshot.
-
-    Args:
-        file_data: File data to add
-    """
-    self.files.append(file_data)
-```
-
-3. **Converting to Dictionary**:
-
-```python
-def to_dict(self) -> dict:
-    """
-    Convert to a dictionary representation.
-
-    Returns:
-        Dictionary representation
-    """
-    return {
-        "name": self.name,
-        "root_path": self.root_path,
-        "files": [file.to_dict() for file in self.files],
-        "metadata": self.metadata,
-        "generation_timestamp": self.generation_timestamp,
-    }
-```
-
-4. **Loading from Dictionary**:
-
-```python
-@classmethod
-def from_dict(cls, data: dict) -> "RepositorySnapshot":
-    """
-    Create a RepositorySnapshot instance from a dictionary.
-
-    Args:
-        data: Dictionary representation
-
-    Returns:
-        RepositorySnapshot instance
-    """
-    files = [FileData.from_dict(file_data) for file_data in data.get("files", [])]
-    return cls(
-        name=data["name"],
-        root_path=data["root_path"],
-        files=files,
-        metadata=data.get("metadata"),
-        generation_timestamp=data.get("generation_timestamp"),
-    )
-```
-
-5. **Saving to File**:
-
-````python
-def save_to_file(self, file_path: str | Path) -> None:
-    """
-    Save the repository snapshot to a JSON file.
-
-    Args:
-        file_path: Path to save the file to
-    """
-    import json
-    from pathlib import Path
-
-    # Convert to dictionary
-    snapshot_dict = self.to_dict()
-
-    # Ensure directory exists
-    path = Path(file_path)
-    path.parent.mkdir(parents=True,
+This code defines data models for representing files and repositories within a processing engine.<end_of_turn>
 
 ### Metadata
 
-| Property | Value |
-| --- | --- |
-| **Size** | 4.9 KB |
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 4.9 KB                     |
 | **Last Modified** | 2025-04-16T19:04:26.824106 |
-| **Type** | py |
-
-
+| **Type**          | py                         |
 
 ```python
 """
@@ -2213,81 +2860,17 @@ class RepositorySnapshot:
         # Create instance
         return cls.from_dict(snapshot_dict)
 
-````
+```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_generator_py_10"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_generator_py_19"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/markdown/generator.py
+## File: src/repoinsight/markdown/generator.py
 
 **Language**: python
 
 ### Description
 
-This code appears to be a Python class that generates Markdown-formatted documentation for a repository, including file listings and tables of contents. Here's a breakdown of its main components:
-
-### Key Components:
-
-1. **File Listing Generation**:
-
-   - The `generate_file_list` method creates a list of files in the repository
-   - Uses `Path` objects to handle paths safely
-   - Generates unique IDs for each file using `generate_file_id`
-
-2. **Table of Contents (TOC) Generation**:
-
-   - The `generate_toc` method creates a hierarchical TOC structure
-   - Uses recursive path traversal to determine the hierarchy
-   - Links files in the TOC with their corresponding IDs
-
-3. **Generation Timestamp**:
-
-   - The `_format_file_size` method formats file sizes in human-readable units (bytes, KB, MB, GB)
-
-4. **Path Normalization and Relativizing**:
-   - Methods like `generate_toc` handle path normalization
-   - Uses relative paths when possible for better readability
-
-### Usage Example:
-
-```python
-class DocumentationGenerator:
-    def __init__(self, repository_path):
-        self.repository_path = Path(repository_path)
-
-    def generate_documentation(self) -> str:
-        # Generate file list
-        files = self.generate_file_list()
-
-        # Generate TOC
-        toc = self.generate_toc(files)
-
-        # Generate generation info
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
-        generation_info = self._generate_generation_info({"generation_timestamp": timestamp})
-
-        return f"""
-{toc}
-{generation_info}
-"""
-
-# Usage
-generator = DocumentationGenerator("/path/to/repo")
-documentation = generator.generate_documentation()
-```
-
-### Potential Improvements:
-
-1. **Error Handling**: Add try-except blocks for file operations and path handling.
-
-2. **Path Validation**: Validate paths before processing to prevent errors.
-
-3. **Performance Optimization**: Consider caching file lists or TOC structures if they're used multiple times.
-
-4. **Internationalization**: Add support for international characters in filenames.
-
-5. **Customization Options**: Allow configuration of output formatting, HTML/CSS templates, etc.
-
-This code provides a solid foundation for generating Markdown-based documentation from repositories, with room for expansion and customization based on specific needs.
+Error generating description:
 
 ### Metadata
 
@@ -2610,9 +3193,9 @@ class MarkdownGenerator:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_components_py_11"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown_components_py_20"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/markdown/components.py
+## File: src/repoinsight/markdown/components.py
 
 **Language**: python
 
@@ -2625,7 +3208,7 @@ Error generating description:
 | Property          | Value                      |
 | ----------------- | -------------------------- |
 | **Size**          | 8.8 KB                     |
-| **Last Modified** | 2025-04-16T20:19:33.232529 |
+| **Last Modified** | 2025-04-16T20:50:50.389077 |
 | **Type**          | py                         |
 
 ````python
@@ -2984,24 +3567,15 @@ class MarkdownComponents:
 
 ````
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown___init___py_12"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_markdown___init___py_21"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/markdown/**init**.py
+## File: src/repoinsight/markdown/**init**.py
 
 **Language**: python
 
 ### Description
 
-# Package Description
-
-This Python package is designed to generate Markdown documentation from repository files and metadata. It provides two main components: `MarkdownComponents` for handling markdown-related functionality, and `MarkdownGenerator` for the actual document generation process.
-
-## Key Components
-
-- **MarkdownComponents**: Handles markdown-specific features and utilities.
-- **MarkdownGenerator**: Responsible for converting repository data into formatted Markdown documents.
-
-The package is structured with clear separation of concerns between components, following modular design principles.
+This Python package generates Markdown documentation from repository data for RepoInsight.<end_of_turn>
 
 ### Metadata
 
@@ -3029,15 +3603,15 @@ __all__ = [
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_yaml_py_13"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_yaml_py_22"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/config/yaml.py
+## File: src/repoinsight/config/yaml.py
 
 **Language**: python
 
 ### Description
 
-Error generating description:
+This code manages RepoInsight configurations by loading, saving, and managing profiles using YAML files and Pydantic models.<end_of_turn>
 
 ### Metadata
 
@@ -3273,15 +3847,15 @@ class ConfigManager:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_config___init___py_14"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_config___init___py_23"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/config/**init**.py
+## File: src/repoinsight/config/**init**.py
 
 **Language**: python
 
 ### Description
 
-This Python package provides a configuration management system for RepoInsight, enabling users to manage application settings through YAML files. It exports various configuration models and utility functions for loading, saving, and locating configuration files. The package follows the standard Python import pattern with explicit `__all__` declaration for better code organization and documentation.
+This Python package facilitates managing RepoInsight’s configuration settings, including file patterns and LLM parameters.<end_of_turn>
 
 ### Metadata
 
@@ -3328,22 +3902,22 @@ __all__ = [
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_models_py_15"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_config_models_py_24"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/config/models.py
+## File: src/repoinsight/config/models.py
 
 **Language**: python
 
 ### Description
 
-Error generating description:
+This code defines Pydantic models for configuring the RepoInsight application, including file scanning and LLM integration settings.<end_of_turn>
 
 ### Metadata
 
 | Property          | Value                      |
 | ----------------- | -------------------------- |
 | **Size**          | 4.8 KB                     |
-| **Last Modified** | 2025-04-16T20:19:33.232278 |
+| **Last Modified** | 2025-04-16T20:50:50.388706 |
 | **Type**          | py                         |
 
 ```python
@@ -3467,9 +4041,9 @@ class RepoInsightConfig(BaseModel):
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_config_panel_py_16"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_config_panel_py_25"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/config_panel.py
+## File: src/repoinsight/gui/config_panel.py
 
 **Language**: python
 
@@ -3482,7 +4056,7 @@ Error generating description:
 | Property          | Value                      |
 | ----------------- | -------------------------- |
 | **Size**          | 22.6 KB                    |
-| **Last Modified** | 2025-04-16T20:19:33.232457 |
+| **Last Modified** | 2025-04-16T20:50:50.388920 |
 | **Type**          | py                         |
 
 ```python
@@ -4094,22 +4668,15 @@ class ConfigPanel(QWidget):
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_worker_py_17"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_worker_py_26"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/worker.py
+## File: src/repoinsight/gui/worker.py
 
 **Language**: python
 
 ### Description
 
-This code defines two worker classes (`AsyncWorker` and `DocumentationWorker`) for handling asynchronous operations in a GUI application. The main purpose is to run long-running tasks (like documentation generation) without blocking the UI thread. Key features include:
-
-- Event loop-based async/await implementation
-- Progress reporting through signals
-- Error handling with informative messages
-- Clean-up of resources in finally blocks
-
-The `AsyncWorker` base class provides common functionality for workers, while `DocumentationWorker` implements specific logic for generating documentation using a ProcessingEngine.
+This code defines asynchronous worker classes for running long-running tasks in the RepoInsight GUI, handling operations like documentation generation.<end_of_turn>
 
 ### Metadata
 
@@ -4274,9 +4841,9 @@ class DocumentationWorker(AsyncWorker):
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_preview_panel_py_18"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_preview_panel_py_27"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/preview_panel.py
+## File: src/repoinsight/gui/preview_panel.py
 
 **Language**: python
 
@@ -4516,9 +5083,9 @@ class MarkdownHighlighter:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_profile_panel_py_19"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_profile_panel_py_28"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/profile_panel.py
+## File: src/repoinsight/gui/profile_panel.py
 
 **Language**: python
 
@@ -4897,15 +5464,15 @@ class ProfilePanel(QWidget):
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui___init___py_20"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui___init___py_29"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/**init**.py
+## File: src/repoinsight/gui/**init**.py
 
 **Language**: python
 
 ### Description
 
-This Python code defines a GUI package for RepoInsight, organizing related modules into separate components. It imports necessary classes and functions from various submodules to create the graphical user interface. The `__all__` list specifies which modules should be exported when using this package. This structure enables modular development and easy integration of different GUI elements like main windows, configuration panels, and preview views.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -4941,62 +5508,15 @@ __all__ = [
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_app_py_21"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_app_py_30"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/app.py
+## File: src/repoinsight/gui/app.py
 
 **Language**: python
 
 ### Description
 
-This code appears to be a Python implementation of a documentation generator application. Let me break down its key components and functionality:
-
-1. **Main Window Class**:
-
-- The `DocumentationWindow` class is the main window for the application.
-- It manages various UI elements including status labels, progress bars, and panels.
-
-2. **Worker Class** (`DocumentationWorker`):
-
-- Handles the actual documentation generation process.
-- Communicates with the main window through signals to update the UI.
-
-3. **Signal Handling**:
-
-- The code uses Python's signal/slot mechanism to handle events from the worker class.
-- Signals are connected to methods in the main window for updating UI elements.
-
-4. **Configuration Management**:
-
-- The application manages configurations through various panels (profile, config).
-- When a configuration changes, it updates the documentation generation settings.
-
-5. **Error Handling**:
-
-- The code includes robust error handling mechanisms.
-- Errors during generation are caught and displayed to the user with appropriate messages.
-
-6. **UI Updates**:
-
-- Methods like `_update_progress` update UI elements (progress bar, status label).
-- Error messages are displayed using `QMessageBox`.
-
-To use this code effectively:
-
-1. Create a new Python project.
-2. Copy this code into a file named `main.py`.
-3. Run the application using `python main.py`.
-
-The application will then open and allow users to select profiles, repositories, and generate documentation.
-
-Note that some parts of the code (like signal connections) are commented out in the provided snippet. You may need to uncomment these or modify them based on your specific requirements.
-
-If you're looking to extend this functionality, consider:
-
-1. Adding more UI elements (e.g., preview panel).
-2. Implementing additional configuration options.
-3. Enhancing error handling and reporting mechanisms.
-4. Adding support for different documentation formats.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -5170,15 +5690,15 @@ if __name__ == "__main__":
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_main_window_py_22"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_gui_main_window_py_31"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/gui/main_window.py
+## File: src/repoinsight/gui/main_window.py
 
 **Language**: python
 
 ### Description
 
-Error generating description:
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -5507,59 +6027,15 @@ class MainWindow(QMainWindow):
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_client_py_23"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_client_py_32"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/llm/client.py
+## File: src/repoinsight/llm/client.py
 
 **Language**: python
 
 ### Description
 
-I'll help you understand and implement the code for generating descriptions of source code files. Here's a breakdown of how this code works:
-
-1. **Main Function**: `generate_description`
-
-   - Takes several parameters including file content, language, model, etc.
-   - Uses an LLM (Large Language Model) to generate a description
-
-2. **System Prompt Generation**
-
-   - Creates a custom prompt for the system role
-   - Includes placeholders for the user's input and specific instructions
-
-3. **API Integration**
-
-   - Makes API requests using `chat_completion`
-   - Handles caching with commit hashes when available
-
-4. **Error Handling**
-   - Implements retry logic with exponential backoff
-   - Logs errors and provides meaningful error messages
-
-Example usage:
-
-```python
-# Generate a description for a Python file
-description = await generate_description(
-    file_path="example.py",
-    file_content="def greet():\n    print('Hello, World!')",
-    language="Python",
-    model="llama3",
-    temperature=0.5,
-    max_tokens=500,
-    system_prompt_template=None,
-    commit_hash="abc123"
-)
-```
-
-Key features:
-
-- Supports multiple programming languages
-- Uses LLMs for intelligent description generation
-- Implements caching with Git commit hashes
-- Provides robust error handling and logging
-
-Would you like me to explain any specific part of this code in more detail?
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -5882,15 +6358,15 @@ class LLMClient:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm___init___py_24"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm___init___py_33"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/llm/**init**.py
+## File: src/repoinsight/llm/**init**.py
 
 **Language**: python
 
 ### Description
 
-This Python package provides an integration layer for language models (LLMs) to generate descriptions of source code files. It includes a CacheManager to handle LLM responses, an LLMClient for interacting with the model, and PromptTemplates for generating specific prompts. The package is designed to be modular and easy to extend, making it suitable for integrating LLMs into RepoInsight's functionality.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -5921,52 +6397,15 @@ __all__ = [
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_prompts_py_25"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_prompts_py_34"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/llm/prompts.py
+## File: src/repoinsight/llm/prompts.py
 
 **Language**: python
 
 ### Description
 
-Here's the implementation of the `get_system_prompt` function:
-
-```python
-def get_system_prompt(language: str) -> str:
-    """
-    Get a formatted system prompt for a specific language.
-
-    Args:
-        language: The programming language or file type
-
-    Returns:
-        A formatted system prompt
-    """
-    template = PromptTemplates.get_template(language)
-    return template.format(language=language)
-```
-
-This function:
-
-1. Takes a `language` parameter which is the name of the programming language or file format.
-2. Uses `PromptTemplates.get_template(language)` to retrieve the appropriate template for that language.
-3. Formats the template by replacing `{language}` with the actual language value.
-4. Returns the formatted prompt string.
-
-The function handles various languages and formats through the `PromptTemplates` class, which contains a mapping of language names to their corresponding templates.
-
-Example usage:
-
-```python
-# Get prompts for different languages
-bash_prompt = get_system_prompt("bash")
-javascript_prompt = get_system_prompt("javascript")
-
-print(bash_prompt)
-print(javascript_prompt)
-```
-
-This would output formatted system prompts for Bash and JavaScript, respectively.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -6174,61 +6613,15 @@ def get_system_prompt(language: str) -> str:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_cache_py_26"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_llm_cache_py_35"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/llm/cache.py
+## File: src/repoinsight/llm/cache.py
 
 **Language**: python
 
 ### Description
 
-This code appears to be a Python implementation of a caching system with file-based storage. Here's an analysis of its key components and functionality:
-
-Key Components:
-
-1. `CacheManager`: The main class that handles cache operations.
-2. File-based storage: Uses JSON files for storing cached data.
-3. Asynchronous operations: Supports async/await for non-blocking file operations.
-
-Notable Features:
-
-- Error handling with logging
-- Size formatting utilities
-- Statistics collection methods
-
-Potential Improvements:
-
-1. **File Locking**: To prevent concurrent writes, consider implementing file locking mechanisms.
-
-2. **Cache Versioning**: Add support for cache versioning to handle updates efficiently.
-
-3. **Batch Operations**: Implement batch operations for better performance with large datasets.
-
-4. **Compression**: Consider adding compression options for storage space optimization.
-
-5. **Memory Usage Monitoring**: Add memory usage monitoring to detect potential issues.
-
-Here's an example of how you might use this class:
-
-```python
-async def main():
-    cache_manager = CacheManager(cache_dir="cache")
-
-    # Get stats
-    stats = await cache_manager.get_stats()
-    print(f"Cache stats: {stats}")
-
-    # Clear cache
-    count = await cache_manager.clear_cache()
-    print(f"Cleared {count} entries")
-
-# Run the example
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
-```
-
-This implementation provides a solid foundation for caching systems, but depending on specific use cases, additional features or optimizations might be necessary.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -6461,68 +6854,15 @@ class CacheManager:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_repository_py_27"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_repository_py_36"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/git/repository.py
+## File: src/repoinsight/git/repository.py
 
 **Language**: python
 
 ### Description
 
-This code is part of a Git repository class that provides functionality to interact with Git repositories. Let me break down the key components:
-
-1. **File History Method** (`get_file_history`):
-
-   - Retrieves the commit history for a specific file path.
-   - Returns a list of dictionaries containing commit information (hash, message, author, etc.).
-
-2. **Blame Information Method** (`get_file_blame`):
-   - Retrieves blame information for a specific file path.
-   - Returns a list of dictionaries representing each line's content and metadata.
-
-Key Features:
-
-1. **Path Handling**:
-
-   - Handles relative paths using the `Path` class from `pathlib`.
-   - Converts paths to absolute paths before performing Git operations.
-
-2. **Git Integration**:
-
-   - Uses the `git` module for Git operations.
-   - Supports various Git commands like `blame`, `log`, etc.
-
-3. **Error Handling**:
-   - Includes try-except blocks to handle potential errors gracefully.
-   - Returns empty lists when operations fail.
-
-Usage Example:
-
-```python
-# Initialize repository class with path to repository root
-repo = Repository("/path/to/repo")
-
-# Get file history for a specific file
-file_path = "path/to/file.txt"
-history = repo.get_file_history(file_path)
-
-# Get blame information for the same file
-blame_info = repo.get_file_blame(file_path)
-```
-
-This code is useful for:
-
-1. **Version Control Analysis**: Analyzing commit histories and blame information.
-2. **Code Review Tools**: Providing tools to analyze code changes over time.
-3. **Documentation Generation**: Generating documentation from Git history.
-
-Potential Improvements:
-
-1. **Caching**: Implement caching mechanisms to avoid repeated Git operations.
-2. **Async Operations**: Consider using async/await for long-running Git commands.
-3. **Configuration Options**: Allow customization of Git behavior and options.
-
-Overall, this code provides a robust foundation for working with Git repositories in Python.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -6775,28 +7115,15 @@ class GitRepository:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_git___init___py_28"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_git___init___py_37"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/git/**init**.py
+## File: src/repoinsight/git/**init**.py
 
 **Language**: python
 
 ### Description
 
-# Description:
-
-This Python module is a Git integration package designed to extract repository metadata from Git repositories. It provides two main components: `GitRepository` for interacting with Git repositories and `GitMetadataExtractor` for extracting metadata.
-
-# Key Functionality:
-
-- Provides access to Git repositories through the `GitRepository` class
-- Enables extraction of metadata using the `GitMetadataExtractor`
-- Facilitates integration with existing RepoInsight functionality
-
-# Important Patterns/Techniques:
-
-- Uses dependency injection through imports from other modules
-- Follows Python's package structure conventions with `__all__` declaration
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -6821,84 +7148,15 @@ __all__ = ["GitRepository", "GitMetadataExtractor"]
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_metadata_py_29"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_src_repoinsight_git_metadata_py_38"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/src/repoinsight/git/metadata.py
+## File: src/repoinsight/git/metadata.py
 
 **Language**: python
 
 ### Description
 
-I'll help you understand and implement the provided code. This appears to be a Python class for generating Markdown-formatted files containing metadata about Git repositories, including file information and Git history.
-
-Let's break down the key components:
-
-1. **Class Definition**:
-
-```python
-class FileMetadataGenerator:
-    def __init__(self, repository: Repository):
-        self.repository = repository
-
-    async def generate_file_metadata(self, file_path: str | Path) -> dict:
-        # Generate metadata for a specific file...
-```
-
-2. **File Metadata Generation**:
-
-```python
-async def generate_file_metadata(self, file_path: str | Path) -> dict:
-    path = Path(file_path)
-
-    file_metadata = {
-        "path": str(path),
-        "name": path.name,
-        # ... other metadata ...
-    }
-```
-
-3. **Formatting File Size**:
-
-```python
-@staticmethod
-def _format_file_size(size_bytes: int) -> str:
-    if size_bytes < 1024:
-        return f"{size_bytes} bytes"
-    elif size_bytes < 1024 * 1024:
-        return f"{size_bytes / 1024:.1f} KB"
-    elif size_bytes < 1024 * 1024 * 1024:
-        return f"{size_bytes / (1024 * 1024):.1f} MB"
-    else:
-        return f"{size_bytes / (1024 * 1024 * 1024):.1f} GB"
-```
-
-To use this class, you would:
-
-```python
-# Initialize the generator with a repository object
-generator = FileMetadataGenerator(repository)
-
-# Generate metadata for a specific file
-metadata = await generator.generate_file_metadata("path/to/file.txt")
-
-# Format and display the metadata in Markdown
-markdown_output = generator.format_file_metadata(metadata)
-print(markdown_output)
-```
-
-This class provides functionality to:
-
-1. Extract metadata from files within Git repositories
-2. Format this metadata into human-readable text
-3. Generate Markdown-formatted output
-
-The code is designed for use with async/await operations, suggesting it's intended for integration with asynchronous frameworks like asyncio or Tornado.
-
-To implement this in your project, you would:
-
-1. Create a `Repository` class to hold the Git repository information
-2. Initialize the `FileMetadataGenerator` with an instance of `Repository`
-3. Call methods like `generate_file_metadata()` to get metadata
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -7100,15 +7358,15 @@ class GitMetadataExtractor:
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_tests___init___py_30"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_tests___init___py_39"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/tests/**init**.py
+## File: tests/**init**.py
 
 **Language**: python
 
 ### Description
 
-This Python package contains unit tests for the `RepoInsight` project, likely verifying the correctness of its functionality through automated testing methods like unittest or pytest. The tests are designed to ensure that all components and features of the codebase work as intended when executed under various scenarios.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -7125,15 +7383,15 @@ Tests package for RepoInsight.
 
 ```
 
-<a id="file__home_mw_Projects_satware_repoinsight_tests_test_config_py_31"></a>
+<a id="file__home_mw_Projects_satware_repoinsight_tests_test_config_py_40"></a>
 
-## File: /home/mw/Projects/satware/repoinsight/tests/test_config.py
+## File: tests/test_config.py
 
 **Language**: python
 
 ### Description
 
-This code provides unit tests for a configuration module used by RepoInsight, testing various aspects of file patterns, required fields, defaults, and persistence. The tests use pytest with temporary directories to isolate test data from the main application. Key functionality includes validation of default values, configuration loading/saving, and profile management.
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
 
 ### Metadata
 
@@ -7252,6 +7510,704 @@ def test_config_manager() -> None:
 
 ```
 
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_04-security_md_41"></a>
+
+## File: .clinerules/04-security.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 852 bytes                  |
+| **Last Modified** | 2025-04-16T18:24:42.133152 |
+| **Type**          | md                         |
+
+```markdown
+# Security Constraints
+
+- DO NOT access or modify:
+  - .env files or secrets directories
+  - Private keys or API tokens
+  - .pyc or other compiled code
+- Sanitize all inputs and outputs to prevent PII leakage
+- Treat all scanned code as plain text, NO code execution
+- Implement GDPR compliance measures:
+  - Detect and redact PII in code, commit messages, and LLM outputs
+  - Practice data minimization - only collect necessary information
+  - Provide clear user control over data collection and processing
+  - Implement appropriate anonymization techniques
+- Follow proper input sanitization to prevent injection attacks
+- Implement proper open source licensing compliance:
+  - Detect licenses of open source code snippets
+  - Include appropriate attribution notices
+  - Ensure license compatibility
+  - Provide clear attribution to original authors
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_06-advanced-features_md_42"></a>
+
+## File: .clinerules/06-advanced-features.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.2 KB                     |
+| **Last Modified** | 2025-04-16T19:04:26.824015 |
+| **Type**          | md                         |
+
+```markdown
+# Advanced Features
+
+## Knowledge Graph Construction
+
+- Implement directed graph representation of code relationships
+- Track file-to-file dependencies
+- Record function and class relationships
+- Visualize code structure as navigable graph
+- Generate insights based on graph metrics
+
+## Plugin Architecture
+
+- Design abstract plugin interfaces
+- Support language-specific plugins for enhanced analysis
+- Enable version comparison plugins
+- Implement runtime loading of external analysis tools
+- Provide comprehensive plugin documentation
+- Follow strict security model for plugin isolation
+
+## Multi-Agent Processing
+
+- Coordinate multiple specialized agents
+- Implement pipeline stages for code analysis
+- Share context efficiently between agents
+- Combine insights from specialized agents
+- Support plugin-based agent extension
+- Handle graceful degradation when specific agents are unavailable
+
+## Advanced LLM Integration
+
+- Support batched processing for efficiency
+- Implement fallback mechanism for failed requests
+- Fine-tune prompts based on file language and structure
+- Cache and reuse similar responses
+- Optimize token usage for large repositories
+- Provide user-configurable prompt templates
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_02-procject-structure_md_43"></a>
+
+## File: .clinerules/02-procject-structure.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.3 KB                     |
+| **Last Modified** | 2025-04-16T20:50:50.388669 |
+| **Type**          | md                         |
+
+````markdown
+# Project Structure
+
+- Root: ~/Projects/satware/repoinsight
+- Source code: /src/repoinsight
+- Directory structure:
+
+  ```txt
+  satware-repoinsight/
+  ├── pyproject.toml
+  ├── poetry.lock
+  ├── README.md
+  ├── src/
+  │   └── repoinsight/
+  │       ├── __init__.py
+  │       ├── cli/          # Command-line interface
+  │       ├── config/       # Configuration models and handling
+  │       ├── git/          # Git repository analysis
+  │       ├── scanner/      # File scanning and filtering
+  │       ├── llm/          # Language model integration
+  │       ├── markdown/     # Document generation
+  │       └── gui/          # PySide6 graphical interface
+  ├── tests/                # Test suites
+  ├── docs/                 # Documentation
+  └── scripts/              # Helper scripts
+  ```
+````
+
+- Exclude directories: venv/, .git/, node_modules/
+- Cache folder: /.cache
+- Cache organization:
+  - File-based by path hash
+  - Version control integration with git commit hashes
+  - LLM response caching for performance
+- Use CommonMark Markdown specification for generated documents
+  - Auto-generated Table of Contents
+  - Per-file sections with metadata
+  - Syntax-highlighted code blocks
+
+````
+
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_09-cross-agent-collaboration_md_44"></a>
+
+## File: .clinerules/09-cross-agent-collaboration.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property | Value |
+| --- | --- |
+| **Size** | 2.5 KB |
+| **Last Modified** | 2025-04-16T19:04:26.824106 |
+| **Type** | md |
+
+
+
+```markdown
+# Cross-Agent Collaboration
+
+## Integration with Other satware® AI Agents
+
+- Design integration points with specialized satware® AI agents
+- Support seamless handoff of context between agents
+- Maintain consistent data formats for inter-agent communication
+- Implement standardized APIs for agent interaction
+
+## Agent Specializations
+
+- **Tim Alesi (Web Development Expert)**:
+
+  - Optimize PySide6 GUI implementations
+  - Enhance UI responsiveness and component design
+  - Provide web-standard compliant HTML output for preview
+
+- **Fenix Alesi (Database Expert)**:
+
+  - Optimize caching strategies for repository data
+  - Enhance query performance for large repositories
+  - Design efficient data structures for code metadata
+
+- **John Alesi (Scientific Research Expert)**:
+
+  - Improve mathematical formalization of code relationships
+  - Optimize LLM prompt engineering for technical accuracy
+  - Enhance algorithm performance for large-scale analysis
+
+- **Justus Alesi (Legal/Compliance Expert)**:
+
+  - Verify GDPR compliance in scanned repositories
+  - Identify license compatibility issues
+  - Ensure proper attribution for open source components
+
+- **Luna Alesi (Knowledge Management Expert)**:
+  - Enhance organizational knowledge representation
+  - Optimize documentation structure for knowledge retention
+  - Design metadata schemas for improved searchability
+
+## Collaboration Workflows
+
+- **Sequential Processing**: Chain multiple agents for specialized analysis
+- **Parallel Processing**: Distribute work across multiple agents simultaneously
+- **Feedback Loops**: Implement iterative improvement through agent feedback
+- **Context Sharing**: Maintain shared context to avoid redundant processing
+- **Fallback Mechanisms**: Gracefully handle unavailable agent scenarios
+
+## Integration Examples
+
+1. Generate code documentation with RepoInsight → Check for GDPR compliance with Justus Alesi
+2. Scan repository structure with RepoInsight → Optimize database queries with Fenix Alesi
+3. Create technical documentation with RepoInsight → Enhance knowledge organization with Luna Alesi
+4. Document code with RepoInsight → Identify potential bugs with John Alesi
+5. Build UI components with RepoInsight → Optimize interface design with Tim Alesi
+
+## Technical Implementation
+
+- Use standardized JSON message formats for agent communication
+- Implement versioned API endpoints for agent requests
+- Support both synchronous and asynchronous interaction models
+- Include detailed metadata in all inter-agent communications
+- Log all agent interactions for auditability and debugging
+
+````
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_07-ui-standards_md_45"></a>
+
+## File: .clinerules/07-ui-standards.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.9 KB                     |
+| **Last Modified** | 2025-04-16T19:04:26.824056 |
+| **Type**          | md                         |
+
+```markdown
+# UI Standards and Implementation
+
+## Layout Design
+
+- Follow 3-panel organization (Profiles, Config, Preview)
+- Use proper spacing for GUI components (margins, padding)
+- Maintain responsive layout that adapts to window resizing
+- Implement collapsible panels and sections for complex UIs
+- Standardize header, footer, and content area styling
+- Use tabs for multi-page content organization
+
+## Component Architecture
+
+- Implement Qt MVC design pattern where appropriate
+- Separate UI logic from business logic
+- Use signal/slot mechanism for component communication
+- Create reusable widgets for common interface elements
+- Implement proper widget hierarchy and ownership chain
+- Use QSplitter for resizable panel interfaces
+
+## Styling and Appearance
+
+- Use standardized color palette
+- Respect system theme when possible
+- Implement consistent spacing and alignment
+- Use clear visual hierarchy for UI elements
+- Apply proper font usage (family, size, weight)
+- Maintain accessibility standards for color contrast
+
+## Internationalization (i18n)
+
+- Use Qt Linguist tools for translation management
+- Apply tr() function for all user-visible strings
+- Support right-to-left languages with proper layout adjustments
+- Implement locale-sensitive formatting for dates and numbers
+- Store translations in separate resource files
+- Test interface with multiple language configurations
+
+## Responsive Design
+
+- Handle window resizing gracefully
+- Set minimum window dimensions to prevent UI breakage
+- Implement scrollable areas for content overflow
+- Use relative sizing (percentages) over fixed pixel values
+- Test on varying screen resolutions and DPI settings
+
+## Input Handling
+
+- Validate all user inputs before processing
+- Provide clear error feedback for invalid inputs
+- Support keyboard navigation and shortcuts
+- Implement proper input focus management
+- Handle drag and drop operations where appropriate
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_01-tech-stack_md_46"></a>
+
+## File: .clinerules/01-tech-stack.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 828 bytes                  |
+| **Last Modified** | 2025-04-16T18:23:49.387732 |
+| **Type**          | md                         |
+
+```markdown
+# Tech Stack
+
+- Python 3.11+ with modern language features (pattern matching, improved error handling, asyncio)
+- Poetry for comprehensive dependency management and reproducible builds
+- PySide6 for cross-platform GUI with native look and feel
+- Compatible with multiple OpenAI-compatible LLM servers:
+  - Jan.ai Local API Server
+  - vLLM OpenAI-compatible server
+  - GPT4All Local API Server
+  - LMDeploy RESTful API
+  - LocalAI API Server
+  - Ollama API integration
+- Cross-platform support:
+  - Linux (Manjaro/Arch), requires glibc 2.28+
+  - Windows 10 (20H2) or newer
+  - macOS Catalina (10.15) or newer (Intel and Apple Silicon)
+- Minimum system requirements:
+  - RAM: 4GB minimum, 8GB+ recommended for large repositories
+  - Storage: 500MB for application, plus cache space
+  - CPU: Dual-core 2GHz+, quad-core recommended
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_05-token-management_md_47"></a>
+
+## File: .clinerules/05-token-management.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.0 KB                     |
+| **Last Modified** | 2025-04-16T20:50:50.388706 |
+| **Type**          | md                         |
+
+```markdown
+# Token Management
+
+- Limit AI context tokens to 75% of model maximum limits
+- Prioritize including active context files and metadata
+- Cache previous completions for stable repeatability
+- Monitor token usage for cost control and efficiency
+- Apply compression techniques for large repositories:
+  - Truncate file content to relevant portions
+  - Summarize lengthy sections when appropriate
+  - Use efficient prompt templating
+- Implement token budgeting per repository size:
+
+  | Repository Size       | Max Tokens Per File | Max Concurrent Requests |
+  | --------------------- | ------------------- | ----------------------- |
+  | Small (<100 files)    | 4,000               | 4                       |
+  | Medium (<1,000 files) | 2,000               | 8                       |
+  | Large (<10,000 files) | 1,000               | 16                      |
+
+- Consider token-efficient representations of code:
+  - Focus on API interfaces and signatures
+  - Prioritize documentation comments
+  - Include relevant imports and dependencies
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_03-development-workflow_md_48"></a>
+
+## File: .clinerules/03-development-workflow.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 1.3 KB                     |
+| **Last Modified** | 2025-04-16T18:24:25.065598 |
+| **Type**          | md                         |
+
+```markdown
+# Development Workflow
+
+## Plan Mode
+
+- Generate clear, step-wise implementation plans
+- Ask clarifying questions if unclear requirements detected
+- Prepare prompts based on file languages and metadata
+- Design architecture diagrams when appropriate
+- Consider cross-component interactions and dependencies
+- Evaluate performance implications for large repositories
+
+## Act Mode
+
+- Apply incremental code changes following user approval
+- Insert debug print statements for complex or critical logic
+- Monitor linter/compiler errors and fix autonomously when possible
+- Use proper error handling and logging throughout the codebase
+- Implement comprehensive docstrings and inline comments
+- Follow asyncio best practices for concurrent operations:
+  - Use semaphores to control concurrency
+  - Implement proper exception handling in async tasks
+  - Avoid blocking operations in event loops
+
+## Testing Approach
+
+- Write unit tests for core functionality
+- Implement integration tests for component interactions
+- Add UI tests for PySide6 components
+- Create performance benchmarks for different repository sizes
+- Follow test-driven development where appropriate
+
+## CI/CD Integration
+
+- Support GitHub Actions workflows
+- Enable automatic documentation generation
+- Implement semantic versioning for releases
+- Include cross-platform build processes
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight__clinerules_08-performance-benchmarks_md_49"></a>
+
+## File: .clinerules/08-performance-benchmarks.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 2.0 KB                     |
+| **Last Modified** | 2025-04-16T19:04:26.824079 |
+| **Type**          | md                         |
+
+```markdown
+# Performance Benchmarks and Optimization
+
+## Repository Size Categories
+
+| Repository Size | File Count    | Approximate Lines of Code |
+| --------------- | ------------- | ------------------------- |
+| Small           | <100 files    | <20,000 LOC               |
+| Medium          | <1,000 files  | <200,000 LOC              |
+| Large           | <10,000 files | <2,000,000 LOC            |
+| Enterprise      | >10,000 files | >2,000,000 LOC            |
+
+## Performance Targets
+
+| Operation              | Small Repo | Medium Repo | Large Repo | Enterprise Repo |
+| ---------------------- | ---------- | ----------- | ---------- | --------------- |
+| Initial Scan           | <5s        | <30s        | <3m        | <10m            |
+| File Filtering         | <1s        | <5s         | <30s       | <2m             |
+| LLM Processing (Total) | <2m        | <15m        | <2h        | Custom Planning |
+| Markdown Generation    | <3s        | <20s        | <3m        | <15m            |
+| Total Process Time     | <3m        | <20m        | <2.5h      | Custom Planning |
+
+## Memory Usage Guidelines
+
+| Repository Size | Peak Memory | Recommended RAM |
+| --------------- | ----------- | --------------- |
+| Small           | <200MB      | 4GB             |
+| Medium          | <500MB      | 8GB             |
+| Large           | <1.5GB      | 16GB            |
+| Enterprise      | >2GB        | 32GB+           |
+
+## Optimization Strategies
+
+- Implement progressive loading for large repositories
+- Apply multi-threading for file scanning and processing
+- Control concurrency based on system resources
+- Cache intermediate results for interrupted operations
+- Support resume functionality for LLM processing
+- Use memory-mapped files for large repositories
+- Apply adaptive chunking based on file content complexity
+- Implement token usage throttling for cost-effective processing
+- Offer batch mode for unattended operation on large repositories
+- Provide detailed performance metrics and diagnostics
+```
+
+<a id="file__home_mw_Projects_satware_repoinsight_docs_USAGE_md_50"></a>
+
+## File: docs/USAGE.md
+
+**Language**: markdown
+
+### Description
+
+Error generating description: Cannot connect to host localhost:8000 ssl:default [Multiple exceptions: [Errno 111] Connect call failed ('::1', 8000, 0, 0), [Errno 111] Connect call failed ('127.0.0.1', 8000)]
+
+### Metadata
+
+| Property          | Value                      |
+| ----------------- | -------------------------- |
+| **Size**          | 3.7 KB                     |
+| **Last Modified** | 2025-04-16T17:35:49.705992 |
+| **Type**          | md                         |
+
+````markdown
+# satware® RepoInsight User Guide
+
+This guide provides an overview of how to use RepoInsight to document your codebase.
+
+## Basic Usage
+
+RepoInsight can be used in both CLI and GUI modes.
+
+### CLI Mode
+
+```bash
+# Basic usage
+repoinsight run
+
+# With a specific configuration file
+repoinsight run --config sample_config.yml
+
+# With a specific profile
+repoinsight run --profile my_profile
+
+# With a specific repository and output path
+repoinsight run --repository /path/to/repo --output /path/to/output.md
+```
+````
+
+### GUI Mode
+
+```bash
+# Launch the GUI
+repoinsight --gui
+
+# The --gui flag takes precedence over any other command
+# and will always launch the GUI regardless of other arguments
+```
+
+From the GUI, you can:
+
+1. Open a repository
+2. Configure settings
+3. Run the documentation generation
+4. View and save the output
+
+## Configuration
+
+RepoInsight can be configured using YAML files. You can initialize a default configuration file for your repository:
+
+```bash
+repoinsight init /path/to/repo
+```
+
+This will create a `.repoinsight.yml` file that you can edit to customize:
+
+- File inclusion/exclusion patterns
+- LLM integration settings
+- Output formatting options
+- And more
+
+See `sample_config.yml` for a comprehensive example.
+
+## Configuration Profiles
+
+You can manage multiple configuration profiles:
+
+```bash
+# List available profiles
+repoinsight config list
+
+# Create a new profile
+repoinsight config create my_profile --repository /path/to/repo
+
+# Delete a profile
+repoinsight config delete my_profile
+```
+
+## LLM Integration
+
+RepoInsight can use Cortex or other OpenAI-compatible LLM servers to generate descriptions of source code files.
+
+1. Make sure your LLM server is running
+2. Configure the `llm` section in your config file
+3. Run RepoInsight as usual
+
+### Caching
+
+LLM responses are cached to avoid redundant API calls. You can manage the cache:
+
+```bash
+# Show cache info
+repoinsight cache info
+
+# Clear the cache
+repoinsight cache clear
+
+# Clear only old cache entries
+repoinsight cache clear --older-than 30  # 30 days
+```
+
+## Programmatic Usage
+
+You can also use RepoInsight programmatically in your Python scripts:
+
+```python
+import asyncio
+from repoinsight.config.yaml import load_config
+from repoinsight.core.engine import ProcessingEngine
+
+async def generate_docs():
+    # Load configuration
+    config = load_config("sample_config.yml")
+
+    # Create engine
+    engine = ProcessingEngine(config)
+
+    # Process repository and generate markdown
+    snapshot, markdown = await engine.process_and_generate()
+
+    print(f"Generated documentation with {len(snapshot.files)} files")
+
+    # Save to file if needed
+    if config.output_path:
+        print(f"Saved to {config.output_path}")
+
+# Run the async function
+asyncio.run(generate_docs())
+```
+
+See `run_repoinsight.py` for a more detailed example.
+
+## Advanced Topics
+
+### Running with Different LLM Providers
+
+RepoInsight supports various LLM providers through OpenAI-compatible APIs:
+
+1. **Cortex**: Set `llm.provider` to `"cortex"` and configure the API URL
+2. **OpenAI**: Set `llm.provider` to `"openai"` and provide your API key
+3. **Any OpenAI-compatible API**: Configure the API URL and key accordingly
+
+### Custom Prompts
+
+You can customize the system prompts used to generate file descriptions by editing the `llm.system_prompt_template` in your configuration file.
+
+### Extending RepoInsight
+
+If you want to extend RepoInsight with custom functionality, the modular architecture makes it easy to add new components:
+
+1. Scanner filters: Add new filter implementations in `scanner/filters.py`
+2. Prompt templates: Add specialized templates for specific languages in `llm/prompts.py`
+3. Markdown components: Add new components in `markdown/components.py`
+
+```
+
+
+
+
 ---
 
-Generated at: 2025-04-16T20:49:36.438839
+Generated at: 2025-04-17T15:23:12.343776
+```

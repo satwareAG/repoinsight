@@ -1,0 +1,45 @@
+name: repoinsight-gemma3-4b
+root_path: /home/mw/Projects/satware/repoinsight
+output_path: /home/mw/Projects/satware/repoinsight/examples/repoinsight-gemma3-4b.md
+scan_directories:
+  - .
+exclude_directories:
+  - venv
+  - node_modules
+  - .git
+  - examples
+  - __pycache__
+  - .repoinsight_cache
+file_patterns:
+  include:
+    - "*.py"
+    - "*.js"
+    - "*.html"
+    - "*.css"
+    - "*.md"
+  exclude:
+    - "*__pycache__*"
+    - "*.git*"
+    - "*.pyc"
+    - node_modules/*
+llm:
+  enabled: true
+  provider: cortex
+  api_base_url: http://localhost:8000/v1
+  api_key: null
+  model: "gemma3:4b"
+  temperature: 0.3
+  max_tokens: 400
+  timeout: 120
+  cache_enabled: true
+  system_prompt_template: You are an expert code summarizer. Your task is to read the following {language} block of code and provide a concise, single-sentence summary that accurately describes its primary function or purpose. Focus on the overall goal of the code, not individual lines or variables. Keep the sentence under 20 words.
+processing:
+  max_concurrent_tasks: 1
+  chunk_size: 16348
+output:
+  include_toc: true
+  include_metadata: true
+  include_file_stats: true
+  include_commit_info: true
+  syntax_highlighting: true
+cache_path: /home/mw/Projects/satware/repoinsight/.repoinsight_cache/gemma3-4b

@@ -1,0 +1,45 @@
+name: repoinsight-gemma2-2b
+root_path: /home/mw/Projects/satware/repoinsight
+output_path: /home/mw/Projects/satware/repoinsight/examples/repoinsight-gemma2-2b.md
+scan_directories:
+  - .
+exclude_directories:
+  - venv
+  - node_modules
+  - .git
+  - examples
+  - __pycache__
+  - .repoinsight_cache
+file_patterns:
+  include:
+    - "*.py"
+    - "*.js"
+    - "*.html"
+    - "*.css"
+    - "*.md"
+  exclude:
+    - "*__pycache__*"
+    - "*.git*"
+    - "*.pyc"
+    - node_modules/*
+llm:
+  enabled: true
+  provider: cortex
+  api_base_url: http://localhost:8000/v1
+  api_key: null
+  model: "gemma2:2b"
+  temperature: 0.3
+  max_tokens: 400
+  timeout: 60
+  cache_enabled: true
+  system_prompt_template: "Analyze the following {language} code. Provide one simple, clear sentence summarizing its main purpose. **Do not** output your reasoning. **Do not** output your thinking. Do not** breakdown code. **Do not** implement code. **Do not** elaborate beyond that single sentence. **Important:** Output one plain text sentence only!"
+processing:
+  max_concurrent_tasks: 4
+  chunk_size: 8192
+output:
+  include_toc: true
+  include_metadata: true
+  include_file_stats: true
+  include_commit_info: true
+  syntax_highlighting: true
+cache_path: /home/mw/Projects/satware/repoinsight/.repoinsight_cache/gemma2-2b
